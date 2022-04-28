@@ -1,3 +1,5 @@
+
+
 ConvergKing is a python script that automate the convergence of electrostatic environment convergence for crystals as described at supermolecular method, "Valverde, C.; Vaz, W. F.; Custodio, J. M. F.; Duarte, V. S.; Carvalho, P. S., Jr.; Figueredo, A. S.; de Aquino, G. L. B.; Baseia, B.; Napolitano, H. B. The Solid State Structure and Environmental Polarization Effect of a Novel Asymmetric Azine. New J. Chem. 2017, 41, 11361−11371".
 
 ConvergKing make use of three input files: 
@@ -14,9 +16,6 @@ Required libraries:
     MoleKing_util -> https://github.com/lopesth/MoleKing_util, The authors would like to thank Lopes TH and Mateus RB for disponibilizing the MoleKing_util chemical package. 
     Matplotlib;
     lmfit;
-    os;
-    sys;
-    time;
     numpy;
 
 How to run:
