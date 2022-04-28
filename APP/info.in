@@ -1,0 +1,12 @@
+ncela = 18              #(x*y*z*len(monomer))/len(supercell)
+nx = 7                  #number of replicated in a(x)  
+ny = 7                  #number of replicated in b(y)
+nz = 7                  #number of replicated in c(z)
+name = acemid05         #name of job
+metodo = HF             #quantum mechanics method
+base = 3-21g            #basis set
+mem = 10GB              #memory avaiable for running the jobs
+cpu = 1                 #number of threads
+sheril = True           #the supercell was generated in mercury? then sheril = False;
+radii = Br 1.35         #metal radii for pop
+cMethod = ChelP         #method to calculate atomic partial charges [ChelP, ChelpG, CM5, MK, Hirshfeld, NBO, NPA, Mulliken] < G16, [AIM] needs multiwfn
