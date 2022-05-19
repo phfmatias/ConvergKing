@@ -8,4 +8,4 @@ base = 3-21g
 mem = 10GB
 cpu = 1
 sheril = False
-cMethod = Hirshfeld
+cMethod = AIM 

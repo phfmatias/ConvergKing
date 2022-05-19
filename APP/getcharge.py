@@ -71,9 +71,8 @@ class get_charge:
                     start = i+1
     
                     end = i+len(self.monomer)+1
-
+        #print(start,end)
         #print(rlines[start:end])
-        #return 0
         return rlines[start:end]
 
     def calculosOk(self):
@@ -98,4 +97,4 @@ if __name__ == '__main__':
     y.addAtom('H',0.00000000,-0.59569250,-1.480303500)
     y.addAtom('H',-1.20093500,0.27017850,-2.171325500)
 
-    get_charge('Hirshfeld',y)
+    get_charge('aim',y)
