@@ -69,25 +69,25 @@ if __name__ == '__main__':
         getdipole(conv.name,x,conv.cMethod)
         step('final', conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
     
-    if conv.restart == True:        
+    if conv.restart == True:    
         chdir('step'+str(rStep))
         cargas = get_charge(conv.cMethod,monomer).cargas
         chdir('..')
 
         for sDone in stepsDone:
             chdir(sDone)
-            header.write('RUNNING -> STEP{} -> '.format(sdone))            
+            header.write('RUNNING -> STEP{} -> '.format(sDone[-1]))            
             header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time())))) 
             chdir('..')
 
-        for x in range(rStep,conv.nsteps):
-            header.write('RE-RUNNING -> STEP{} -> '.format(x))
+        for x in range(rStep+1,conv.nsteps):
+            header.write('RUNNING -> STEP{} -> '.format(x))
             step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
             chdir('step{}'.format(x))
             run_g16()
             if conv.cMethod.lower() == 'aim':
                 run_mwfn(conv.cMethod)
-            header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
+            header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s (RESTARTED)\n'.format(h.getDipole(),(abs(start - time()))))
             cargas = get_charge(conv.cMethod,monomer).cargas
             chdir(home)
         getdipole(conv.name,x,conv.cMethod)

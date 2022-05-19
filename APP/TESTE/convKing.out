@@ -19,13 +19,12 @@
 Starting Convergence.....
 
 Restart option is just allowed if restart step is bigger than 2. in this case, we will run the simulation from beginning.
-
-RUNNING -> STEP0 -> DIPOLE MOMENT = 2.9081 -> Runtime: 0.92s
-RUNNING -> STEP1 -> DIPOLE MOMENT = 3.3641 -> Runtime: 16.76s
-RUNNING -> STEP2 -> DIPOLE MOMENT = 3.4267 -> Runtime: 32.42s
-RUNNING -> STEP3 -> DIPOLE MOMENT = 3.4355 -> Runtime: 47.96s
-RUNNING -> STEP4 -> DIPOLE MOMENT = 3.4367 -> Runtime: 63.57s
-RUNNING -> STEP5 -> DIPOLE MOMENT = 3.4369 -> Runtime: 78.87s
+RUNNING -> STEP2 -> DIPOLE MOMENT = 3.4267 -> Runtime: 0.06s
+RUNNING -> STEP1 -> DIPOLE MOMENT = 3.3641 -> Runtime: 0.07s
+RUNNING -> STEP0 -> DIPOLE MOMENT = 2.9081 -> Runtime: 0.07s
+RUNNING -> STEP3 -> DIPOLE MOMENT = 3.4355 -> Runtime: 15.25s (RESTARTED)
+RUNNING -> STEP4 -> DIPOLE MOMENT = 3.4367 -> Runtime: 30.37s (RESTARTED)
+RUNNING -> STEP5 -> DIPOLE MOMENT = 3.4369 -> Runtime: 45.52s (RESTARTED)
 
 The converged ESP Charge using Chelpg scheme are:
 
@@ -39,4 +38,4 @@ The converged ESP Charge using Chelpg scheme are:
      8  H    0.143401
      9  H    0.131133
 
-Runtime: 79.73s
+Runtime: 46.39s

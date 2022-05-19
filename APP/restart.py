@@ -11,6 +11,9 @@ class restart:
         
         if len(self.list_steps) == nsteps:
             self.norestart = True
+        
+        else:
+            self.norestart = False
 
         self.nsteps = nsteps  
         self.checkSteps()
@@ -26,7 +29,7 @@ class restart:
             chdir('..')     
         
         if check == False:
-            self.problem = int(max(self.list_steps)[-1]) 
+            self.problem = int(max(self.list_steps)[-1])
 
         #if len(self.list_steps)       
 
