@@ -18,10 +18,5 @@
 
 Starting Convergence.....
 
-RUNNING -> STEP0 -> DIPOLE MOMENT = 4.3389 -> Runtime: 2.92s
-RUNNING -> STEP1 -> DIPOLE MOMENT = 5.3446 -> Runtime: 20.29s
-RUNNING -> STEP2 -> DIPOLE MOMENT = 5.5507 -> Runtime: 37.63s
-RUNNING -> STEP3 -> DIPOLE MOMENT = 5.5930 -> Runtime: 54.95s
-RUNNING -> STEP4 -> DIPOLE MOMENT = 5.6018 -> Runtime: 72.34s
-
-Runtime: 73.12s
+RUNNING -> STEP0 -> DIPOLE MOMENT = 2.9081 -> Runtime: 0.75s
+RUNNING -> STEP1 -> 

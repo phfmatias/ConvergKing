@@ -1,6 +1,7 @@
 from MoleKing_util import Molecule
 from time import time
 from os import chdir,getcwd
+from sys import argv
 from APP.runqm import run_g16, run_mwfn
 from APP.step0 import step0
 from APP.header import header
@@ -19,7 +20,7 @@ if __name__ == '__main__':
     header.write('\nStarting Convergence.....\n')
 
     home = getcwd()
-
+    
     if conv.sheril == True:
         arq = open('assimetrical_unit.xyz','r')
         arqlines = arq.readlines()[2:]
@@ -43,7 +44,7 @@ if __name__ == '__main__':
     header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
     cargas = get_charge(conv.cMethod,monomer).cargas
     chdir(home)
-    for x in range(1,5):
+    for x in range(1,conv.nsteps):
         header.write('RUNNING -> STEP{} -> '.format(x))
         step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
         chdir('step{}'.format(x))

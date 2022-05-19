@@ -13,6 +13,7 @@ class getinfo:
         self.cpu = 1
         self.sheril = True
         self.cMethod = 'ChelpG'
+        self.nsteps = 10
         self.radii = []
         self.get_info()
 
@@ -48,6 +49,9 @@ class getinfo:
             
             elif 'mem' in lines:
                 self.mem = lines.split()[2]
+
+            elif 'nsteps' in lines:
+                self.nsteps = int(lines.split()[2])
 
             elif 'cpu' in lines:
                 self.cpu = int(lines.split()[2])
