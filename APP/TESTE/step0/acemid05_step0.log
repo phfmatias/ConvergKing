@@ -2,8 +2,8 @@
  Input=acemid05_step0.gjf
  Output=acemid05_step0.log
  Initial command:
- /home/phfmatias/G16/g16/l1.exe "/home/phfmatias/Gaussian_Scratch/Gau-21631.inp" -scrdir="/home/phfmatias/Gaussian_Scratch/"
- Entering Link 1 = /home/phfmatias/G16/g16/l1.exe PID=     21633.
+ /home/phfmatias/G16/g16/l1.exe "/home/phfmatias/Gaussian_Scratch/Gau-36321.inp" -scrdir="/home/phfmatias/Gaussian_Scratch/"
+ Entering Link 1 = /home/phfmatias/G16/g16/l1.exe PID=     36323.
   
  Copyright (c) 1988-2017, Gaussian, Inc.  All Rights Reserved.
   
@@ -91,7 +91,7 @@
  5/5=2,38=5/2;
  6/7=2,8=2,9=2,10=2,15=8,20=3,22=-1,28=1/1,2;
  99/5=1,9=1/99;
- Leave Link    1 at Thu May 19 11:16:27 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
+ Leave Link    1 at Thu May 19 14:13:15 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.1
  (Enter /home/phfmatias/G16/g16/l101.exe)
  ------
  STEP 0
@@ -124,7 +124,7 @@
  NQMom=    0.0000000   0.0000000   0.0000000   2.0440000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
  NMagM=    0.0000000   0.0000000   0.0000000   0.4037610   2.7928460   2.7928460   2.7928460   2.7928460   2.7928460
  AtZNuc=   6.0000000   6.0000000   8.0000000   7.0000000   1.0000000   1.0000000   1.0000000   1.0000000   1.0000000
- Leave Link  101 at Thu May 19 11:16:27 2022, MaxMem=  1342177280 cpu:               0.1 elap:               0.1
+ Leave Link  101 at Thu May 19 14:13:15 2022, MaxMem=  1342177280 cpu:               0.1 elap:               0.1
  (Enter /home/phfmatias/G16/g16/l202.exe)
                           Input orientation:                          
  ---------------------------------------------------------------------
@@ -163,7 +163,7 @@
  Deg. of freedom    21
  Full point group                 C1      NOp   1
  Rotational constants (GHZ):          11.1042470           9.6074582           5.2803987
- Leave Link  202 at Thu May 19 11:16:27 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
+ Leave Link  202 at Thu May 19 14:13:15 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
  (Enter /home/phfmatias/G16/g16/l301.exe)
  Standard basis: STO-3G (5D, 7F)
  Ernie: Thresh=  0.10000D-02 Tol=  0.10000D-05 Strict=F.
@@ -177,17 +177,17 @@
  Integral buffers will be    131072 words long.
  Raffenetti 1 integral format.
  Two-electron integral symmetry is turned off.
- Leave Link  301 at Thu May 19 11:16:27 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
+ Leave Link  301 at Thu May 19 14:13:15 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
  (Enter /home/phfmatias/G16/g16/l302.exe)
  NPDir=0 NMtPBC=     1 NCelOv=     1 NCel=       1 NClECP=     1 NCelD=      1
          NCelK=      1 NCelE2=     1 NClLst=     1 CellRange=     0.0.
  One-electron integrals computed using PRISM.
  NBasis=    25 RedAO= T EigKep=  1.62D-01  NBF=    25
  NBsUse=    25 1.00D-06 EigRej= -1.00D+00 NBFU=    25
- Leave Link  302 at Thu May 19 11:16:28 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
+ Leave Link  302 at Thu May 19 14:13:15 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
  (Enter /home/phfmatias/G16/g16/l303.exe)
  DipDrv:  MaxL=1.
- Leave Link  303 at Thu May 19 11:16:28 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
+ Leave Link  303 at Thu May 19 14:13:15 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
  (Enter /home/phfmatias/G16/g16/l401.exe)
  ExpMin= 1.69D-01 ExpMax= 1.31D+02 ExpMxC= 1.31D+02 IAcc=3 IRadAn=         5 AccDes= 0.00D+00
  Harris functional with IExCor=  205 and IRadAn=       5 diagonalized for initial guess.
@@ -200,7 +200,7 @@
  Symmetry not used in FoFCou.
  Harris En= -205.395193540307    
  JPrj=0 DoOrth=F DoCkMO=F.
- Leave Link  401 at Thu May 19 11:16:28 2022, MaxMem=  1342177280 cpu:               0.4 elap:               0.4
+ Leave Link  401 at Thu May 19 14:13:15 2022, MaxMem=  1342177280 cpu:               0.4 elap:               0.4
  (Enter /home/phfmatias/G16/g16/l502.exe)
  Keep R1 ints in memory in canonical form, NReq=866041.
  FoFCou: FMM=F IPFlag=           0 FMFlag=           0 FMFlg1=           0
@@ -386,7 +386,7 @@
  SCF Done:  E(RHF) =  -205.185910050     A.U. after   13 cycles
             NFock= 13  Conv=0.29D-08     -V/T= 2.0047
  KE= 2.042185673628D+02 PE=-7.319534706260D+02 EE= 1.978087248231D+02
- Leave Link  502 at Thu May 19 11:16:28 2022, MaxMem=  1342177280 cpu:               0.1 elap:               0.1
+ Leave Link  502 at Thu May 19 14:13:16 2022, MaxMem=  1342177280 cpu:               0.1 elap:               0.1
  (Enter /home/phfmatias/G16/g16/l601.exe)
  Copying SCF densities to generalized density rwf, IOpCl= 0 IROHF=0.
 
@@ -462,7 +462,7 @@
  XXYZ=            -29.6331 YYXZ=            -42.8748 ZZXY=            -29.7740
  N-N= 1.247402683898D+02 E-N=-7.319534706299D+02  KE= 2.042185673628D+02
  No NMR shielding tensors so no spin-rotation constants.
- Leave Link  601 at Thu May 19 11:16:28 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
+ Leave Link  601 at Thu May 19 14:13:16 2022, MaxMem=  1342177280 cpu:               0.0 elap:               0.0
  (Enter /home/phfmatias/G16/g16/l602.exe)
  FitSet:  NAtFit=     9 NAtPot=     9 NAtFrz=     0 MDM=    13 TotChg=   0.00000
  Breneman (CHELPG) radii used.
@@ -526,7 +526,7 @@
     8 Atom     -1.085395
     9 Atom     -1.107971
  -----------------------------------------------------------------
- Leave Link  602 at Thu May 19 11:16:28 2022, MaxMem=  1342177280 cpu:               0.1 elap:               0.0
+ Leave Link  602 at Thu May 19 14:13:16 2022, MaxMem=  1342177280 cpu:               0.1 elap:               0.0
  (Enter /home/phfmatias/G16/g16/l9999.exe)
  1\1\GINC-LEEDMOL\SP\RHF\STO-3G\C2H5N1O1\PHFMATIAS\19-May-2022\0\\#p HF
  /STO-3G POP=Chelpg density=current NoSymm\\STEP 0\\0,1\C,0,4.730509,1.
@@ -539,9 +539,12 @@
  20178,-1.1388684\PG=C01 [X(C2H5N1O1)]\\@
 
 
- MICRO CREDO - NEVER TRUST A COMPUTER BIGGER
-               BIGGER THAN YOU CAN LIFT.
- Job cpu time:       0 days  0 hours  0 minutes  0.7 seconds.
- Elapsed time:       0 days  0 hours  0 minutes  0.7 seconds.
+ ADVERTISING--  HE WHO HAS SOMETHING TO SELL AND GOES AND WHISPERS
+                IN A WELL, IS NOT SO APT TO GET THE DOLLARS AS HE
+                WHO CLIMBS A TREE AND HOLLERS.
+
+                   -- FROM THE BACK OF A SUGAR PACKET
+ Job cpu time:       0 days  0 hours  0 minutes  0.8 seconds.
+ Elapsed time:       0 days  0 hours  0 minutes  0.8 seconds.
  File lengths (MBytes):  RWF=      6 Int=      0 D2E=      0 Chk=      1 Scr=      1
- Normal termination of Gaussian 16 at Thu May 19 11:16:28 2022.
+ Normal termination of Gaussian 16 at Thu May 19 14:13:16 2022.

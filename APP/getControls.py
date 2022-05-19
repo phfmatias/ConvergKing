@@ -14,6 +14,7 @@ class getinfo:
         self.sheril = True
         self.cMethod = 'ChelpG'
         self.nsteps = 10
+        self.restart = False
         self.radii = []
         self.get_info()
 
@@ -51,7 +52,13 @@ class getinfo:
                 self.mem = lines.split()[2]
 
             elif 'nsteps' in lines:
-                self.nsteps = int(lines.split()[2])
+                self.nsteps = int(lines.split()[2])+1
+
+            elif 'restart' in lines:
+                if lines.split()[2] == 'False':
+                    self.restart = False
+                else:
+                    self.restart = True
 
             elif 'cpu' in lines:
                 self.cpu = int(lines.split()[2])

@@ -9,6 +9,7 @@ from APP.getcharge import get_charge
 from APP.steps import step
 from APP.getDipole import getdipole
 from APP.getControls import getinfo
+from APP.restart import restart
 
 if __name__ == '__main__':
 
@@ -19,8 +20,17 @@ if __name__ == '__main__':
 
     header.write('\nStarting Convergence.....\n')
 
+    rStep = restart(conv.nsteps).problem
+    checkRestart = restart(conv.nsteps).norestart
+    stepsDone = restart(conv.nsteps).list_steps
+
+    if rStep == 0 or rStep == 1 or checkRestart == True :
+        conv.restart = False
+
+    header.write('\nRestart option is just allowed if restart step is bigger than 2. in this case, we will run the simulation from beginning.\n')
+
     home = getcwd()
-    
+
     if conv.sheril == True:
         arq = open('assimetrical_unit.xyz','r')
         arqlines = arq.readlines()[2:]
@@ -35,28 +45,54 @@ if __name__ == '__main__':
         for lines in rlines[2:]:
             monomer.addAtom(str(lines.split()[0]),float(lines.split()[1]),float(lines.split()[2]),float(lines.split()[3]))
 
-    header.write('\nRUNNING -> STEP0 -> ')
-    step0(conv.name, conv.metodo, conv.base, monomer,conv.cpu,conv.mem,conv.sheril,conv.radii,conv.cMethod)
-    chdir('step0')
-    run_g16()
-    if conv.cMethod.lower() == 'aim':
-        run_mwfn(conv.cMethod)   
-    header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
-    cargas = get_charge(conv.cMethod,monomer).cargas
-    chdir(home)
-    for x in range(1,conv.nsteps):
-        header.write('RUNNING -> STEP{} -> '.format(x))
-        step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
-        chdir('step{}'.format(x))
+    if conv.restart == False:
+        header.write('\nRUNNING -> STEP0 -> ')
+        step0(conv.name, conv.metodo, conv.base, monomer,conv.cpu,conv.mem,conv.sheril,conv.radii,conv.cMethod)
+        chdir('step0')
         run_g16()
         if conv.cMethod.lower() == 'aim':
-            run_mwfn(conv.cMethod)
+            run_mwfn(conv.cMethod)   
         header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
         cargas = get_charge(conv.cMethod,monomer).cargas
         chdir(home)
-    getdipole(conv.name,x,conv.cMethod)
-    step('final', conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
+
+        for x in range(1,conv.nsteps):
+            header.write('RUNNING -> STEP{} -> '.format(x))
+            step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
+            chdir('step{}'.format(x))
+            run_g16()
+            if conv.cMethod.lower() == 'aim':
+                run_mwfn(conv.cMethod)
+            header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
+            cargas = get_charge(conv.cMethod,monomer).cargas
+            chdir(home)
+        getdipole(conv.name,x,conv.cMethod)
+        step('final', conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
     
+    if conv.restart == True:        
+        chdir('step'+str(rStep))
+        cargas = get_charge(conv.cMethod,monomer).cargas
+        chdir('..')
+
+        for sDone in stepsDone:
+            chdir(sDone)
+            header.write('RUNNING -> STEP{} -> '.format(sdone))            
+            header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time())))) 
+            chdir('..')
+
+        for x in range(rStep,conv.nsteps):
+            header.write('RE-RUNNING -> STEP{} -> '.format(x))
+            step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
+            chdir('step{}'.format(x))
+            run_g16()
+            if conv.cMethod.lower() == 'aim':
+                run_mwfn(conv.cMethod)
+            header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
+            cargas = get_charge(conv.cMethod,monomer).cargas
+            chdir(home)
+        getdipole(conv.name,x,conv.cMethod)
+        step('final', conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
+
     if conv.cMethod.lower() == 'chelp' or conv.cMethod.lower() == 'chelpg':
         header.write('\nThe converged ESP Charge using {} scheme are:\n\n'.format(conv.cMethod))
         for x in cargas:
