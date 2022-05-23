@@ -14,7 +14,7 @@ class run_mwfn:
     def __init__(self,cMethod):       
         self.cMethod = cMethod
         self.doMFWN()
-        self.runMFWN()
+        #self.runMFWN()
 
     def doMFWN(self):
         for a in listdir():

@@ -2,6 +2,7 @@ from MoleKing_util import Molecule
 from time import time
 from os import chdir,getcwd
 from sys import argv
+from subprocess import call
 from APP.runqm import run_g16, run_mwfn
 from APP.step0 import step0
 from APP.header import header
@@ -51,7 +52,8 @@ if __name__ == '__main__':
         chdir('step0')
         run_g16()
         if conv.cMethod.lower() == 'aim':
-            run_mwfn(conv.cMethod)   
+            run_mwfn(conv.cMethod)
+            call('bash temp.sh', shell=True)   
         header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
         cargas = get_charge(conv.cMethod,monomer).cargas
         chdir(home)
@@ -63,6 +65,7 @@ if __name__ == '__main__':
             run_g16()
             if conv.cMethod.lower() == 'aim':
                 run_mwfn(conv.cMethod)
+                call('bash temp.sh', shell=True)   
             header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
             cargas = get_charge(conv.cMethod,monomer).cargas
             chdir(home)
@@ -87,6 +90,7 @@ if __name__ == '__main__':
             run_g16()
             if conv.cMethod.lower() == 'aim':
                 run_mwfn(conv.cMethod)
+                call('bash temp.sh', shell=True)   
             header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s (RESTARTED)\n'.format(h.getDipole(),(abs(start - time()))))
             cargas = get_charge(conv.cMethod,monomer).cargas
             chdir(home)
