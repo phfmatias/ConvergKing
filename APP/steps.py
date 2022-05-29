@@ -228,8 +228,11 @@ if __name__ == '__main__':
 
     #cargas = ['      1 (C )    Charge:    0.291104     Volume:    63.649 Bohr^3\n', '      2 (C )    Charge:    1.265493     Volume:    42.383 Bohr^3\n', '      3 (O )    Charge:   -1.012863     Volume:   108.150 Bohr^3\n', '      4 (N )    Charge:   -1.185355     Volume:   101.364 Bohr^3\n', '      5 (H )    Charge:    0.422926     Volume:    22.015 Bohr^3\n', '      6 (H )    Charge:    0.387384     Volume:    22.095 Bohr^3\n', '      7 (H )    Charge:   -0.072782     Volume:    42.841 Bohr^3\n', '      8 (H )    Charge:   -0.097471     Volume:    43.206 Bohr^3\n', '      9 (H )    Charge:    0.001563     Volume:    41.561 Bohr^3\n']
 
+    #cargas = ['      1 (C )    Charge:    0.405047     Volume:    57.842 Bohr^3\n', '      2 (C )    Charge:    1.557571     Volume:    37.877 Bohr^3\n', '      3 (O )    Charge:   -0.998289     Volume:    88.498 Bohr^3\n', '      4 (N )    Charge:   -1.984958     Volume:   120.923 Bohr^3\n', '      7 (H )    Charge:   -0.144038     Volume:    42.849 Bohr^3\n', '      8 (H )    Charge:   -0.172902     Volume:    43.356 Bohr^3\n', '      9 (H )    Charge:   -0.092865     Volume:    42.578 Bohr^3\n', ' \n', '\n']
+    
     #cargas = ['     1  C   -0.566093\n', '     2  C    0.987178\n', '     3  O   -0.682453\n', '     4  N   -1.112693\n', '     5  H    0.460430\n', '     6  H    0.442831\n', '     7  H    0.164643\n', '     8  H    0.149555\n', '     9  H    0.156603\n']
 
+    
 
     y.addAtom('C',4.730509,1.288533,0.463983)
     y.addAtom('C',3.895041,0.033141,0.517227)
@@ -241,5 +244,5 @@ if __name__ == '__main__':
     y.addAtom('H',5.648318,1.044998,0.438328)
     y.addAtom('H',4.447404,1.910854,-0.252683)
 
-    x = step(1, 'HF', '3-21g', y, 'teste', cargas, 18, 7, 7, 7, 1, '10GB', False, '', 'Hirshfeld')
+    x = step(1, 'HF', '3-21g', y, 'teste', cargas, 18, 7, 7, 7, 1, '10GB', False, '', 'aim')
     #x = step0('teste', 'HF', '6-31g', y, 1, '2GB', False,'','ChelpG')
