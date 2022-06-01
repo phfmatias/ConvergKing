@@ -29,7 +29,7 @@ if __name__ == '__main__':
         if rStep == 0 or rStep == 1 or checkRestart == True :
             conv.restart = False
 
-    header.write('\nRestart option is just allowed if restart step is bigger than 2. in this case, we will run the simulation from beginning.\n')
+        header.write('\nRestart option is just allowed if restart step is bigger than 2. in this case, we will run the simulation from beginning.\n')
 
     home = getcwd()
 
