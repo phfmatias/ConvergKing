@@ -1,287 +1,0 @@
- Warning: "settings.ini" was found neither in current folder nor in the path defined by "Multiwfnpath" environment variable. Now using default settings instead
- 
- Multiwfn -- A Multifunctional Wavefunction Analyzer
- Version 3.8(dev), release date: 2022-Apr-22
- Developer: Tian Lu (Beijing Kein Research Center for Natural Sciences)
- Below paper ***MUST BE CITED*** if Multiwfn is utilized in your work:
-          Tian Lu, Feiwu Chen, J. Comput. Chem., 33, 580-592 (2012)
- See "How to cite Multiwfn.pdf" in Multiwfn binary package for more information
- Multiwfn official website: http://sobereva.com/multiwfn
- Multiwfn English forum: http://sobereva.com/wfnbbs
- Multiwfn Chinese forum: http://bbs.keinsci.com/wfn
-
- ( Number of parallel threads:   4  Current date: 2022-05-31  Time: 16:32:01 )
- 
- Please wait...
- 
- Total energy:   -9075.618103003506 Hartree,   Virial ratio: 44.76021000
- Total/Alpha/Beta electrons:     32.0000     16.0000     16.0000
- Net charge:     0.00000    Expected multiplicity:    1
- The number of orbitals:    16,  Atoms:      9,  GTFs:     75
- This is a restricted closed-shell single-determinant wavefunction
- Title line of this file:  STEP 5
-
- Loaded acemid05_wfn.wfn successfully!
- 
- Formula: H5 C2 N1 O1 
- Molecule weight:        59.06728 Da
- Point group: C1 
- 
- "q": Exit program gracefully          "r": Load a new file
-                    ************ Main function menu ************
- 0 Show molecular structure and view orbitals
- 1 Output all properties at a point       2 Topology analysis
- 3 Output and plot specific property in a line
- 4 Output and plot specific property in a plane
- 5 Output and plot specific property within a spatial region (calc. grid data)
- 6 Check & modify wavefunction
- 7 Population analysis and calculation of atomic charges
- 8 Orbital composition analysis           9 Bond order analysis
- 10 Plot total DOS, partial DOS, OPDOS, local DOS and photoelectron spectrum
- 11 Plot IR/Raman/UV-Vis/ECD/VCD/ROA/NMR spectrum
- 12 Quantitative analysis of molecular surface
- 13 Process grid data (No grid data is presented currently)
- 14 Adaptive natural density partitioning (AdNDP) analysis
- 15 Fuzzy atomic space analysis
- 16 Charge decomposition analysis (CDA) and plot orbital interaction diagram
- 17 Basin analysis                       18 Electron excitation analysis
- 19 Orbital localization analysis        20 Visual study of weak interaction
- 21 Energy decomposition analysis        22 Conceptual DFT (CDFT) analysis
- 23 ETS-NOCV analysis                    24 (Hyper)polarizability analysis
- 25 Electron delocalization and aromaticity analyses
- 100 Other functions (Part 1)            200 Other functions (Part 2)
- 300 Other functions (Part 3)
- 
-                  ============= Basin analysis =============
- -10 Return to main menu
- -6 Set parameter for attractor clustering
- -1 Select the method for generating basins, current: Near-grid with refinement
-  1 Generate basins and locate attractors
- Select the real space function used for partitioning basins
-             ----------- Available real space functions -----------
- 1 Electron density                 2 Gradient norm of electron density
- 3 Laplacian of electron density    4 Value of orbital wavefunction
- 5 Electron spin density
- 6 Hamiltonian kinetic energy density K(r)
- 7 Lagrangian kinetic energy density G(r)
- 8 Electrostatic potential from nuclear charges
- 9 Electron Localization Function (ELF)
- 10 Localized orbital locator (LOL)
- 11 Local information entropy
- 12 Total electrostatic potential (ESP)
- 13 Reduced density gradient (RDG)     14 RDG with promolecular approximation
- 15 Sign(lambda2)*rho    16 Sign(lambda2)*rho with promolecular approximation
- 17 Correlation hole for alpha, ref. point:   0.00000   0.00000   0.00000
- 18 Average local ionization energy (ALIE)
- 19 Source function, mode: 1, ref. point:   0.00000   0.00000   0.00000
- 20 Electron delocalization range function EDR(r;d)
- 21 Orbital overlap distance function D(r)
- 22 Delta-g (promol. approx.)     23 Delta-g (Hirshfeld partition)
- 100 User-defined function (iuserfunc=    0)  See Section 2.7 of manual
- Please select a method for setting up grid
- -10 Set grid extension distance for mode 1~6, current: Detect rho isosurface
- 1 Low quality grid, spacing=0.20 Bohr, cost: 1x
- 2 Medium quality grid, spacing=0.10 Bohr, cost: 8x
- 3 High quality grid, spacing=0.06 Bohr, cost: 36x
- 4 Lunatic quality grid, spacing=0.04 Bohr, cost: 120x
- 5 Only input grid spacing, automatically set other parameters
- 6 Only input the number of points in X,Y,Z, automatically set other parameters
- 7 Input original point, translation vector and the number of points
- 8 Set center position, grid spacing and box length
- 9 Use grid setting of another cube file
- 10 Set box of grid data visually using a GUI window
- Detecting proper box size...
- Coordinate of origin in X,Y,Z is       0.827714   -7.903802   -5.290036 Bohr
- Coordinate of end point in X,Y,Z is   15.527714    8.596198    7.509964 Bohr
- Grid spacing in X,Y,Z is    0.100000    0.100000    0.100000 Bohr
- Number of points in X,Y,Z is  148  166  129   Total:     3169272
- Note: All exponential functions exp(x) with x< -40.000 will be ignored 
- Unique GTFs have been constructed. Number of unique GTFs:      75
- Progress: [--------------------------------------------------]    0.00 %     - Progress: [--------------------------------------------------]    0.78 %     \ Progress: [--------------------------------------------------]    1.55 %     | Progress: [#-------------------------------------------------]    2.33 %     / Progress: [#-------------------------------------------------]    3.10 %     - Progress: [#-------------------------------------------------]    3.88 %     \ Progress: [##------------------------------------------------]    4.65 %     | Progress: [##------------------------------------------------]    5.43 %     / Progress: [###-----------------------------------------------]    6.20 %     - Progress: [###-----------------------------------------------]    6.98 %     \ Progress: [###-----------------------------------------------]    7.75 %     | Progress: [####----------------------------------------------]    8.53 %     / Progress: [####----------------------------------------------]    9.30 %     - Progress: [#####---------------------------------------------]   10.08 %     \ Progress: [#####---------------------------------------------]   10.85 %     | Progress: [#####---------------------------------------------]   11.63 %     / Progress: [######--------------------------------------------]   12.40 %     - Progress: [######--------------------------------------------]   13.18 %     \ Progress: [######--------------------------------------------]   13.95 %     | Progress: [#######-------------------------------------------]   14.73 %     / Progress: [#######-------------------------------------------]   15.50 %     - Progress: [########------------------------------------------]   16.28 %     \ Progress: [########------------------------------------------]   17.05 %     | Progress: [########------------------------------------------]   17.83 %     / Progress: [#########-----------------------------------------]   18.60 %     - Progress: [#########-----------------------------------------]   19.38 %     \ Progress: [##########----------------------------------------]   20.16 %     | Progress: [##########----------------------------------------]   20.93 %     / Progress: [##########----------------------------------------]   21.71 %     - Progress: [###########---------------------------------------]   22.48 %     \ Progress: [###########---------------------------------------]   23.26 %     | Progress: [############--------------------------------------]   24.03 %     / Progress: [############--------------------------------------]   24.81 %     - Progress: [############--------------------------------------]   25.58 %     \ Progress: [#############-------------------------------------]   26.36 %     | Progress: [#############-------------------------------------]   27.13 %     / Progress: [#############-------------------------------------]   27.91 %     - Progress: [##############------------------------------------]   28.68 %     \ Progress: [##############------------------------------------]   29.46 %     | Progress: [###############-----------------------------------]   30.23 %     / Progress: [###############-----------------------------------]   31.01 %     - Progress: [###############-----------------------------------]   31.78 %     \ Progress: [################----------------------------------]   32.56 %     | Progress: [################----------------------------------]   33.33 %     / Progress: [#################---------------------------------]   34.11 %     - Progress: [#################---------------------------------]   34.88 %     \ Progress: [#################---------------------------------]   35.66 %     | Progress: [##################--------------------------------]   36.43 %     / Progress: [##################--------------------------------]   37.21 %     - Progress: [##################--------------------------------]   37.98 %     \ Progress: [###################-------------------------------]   38.76 %     | Progress: [###################-------------------------------]   39.53 %     / Progress: [####################------------------------------]   40.31 %     - Progress: [####################------------------------------]   41.09 %     \ Progress: [####################------------------------------]   41.86 %     | Progress: [#####################-----------------------------]   42.64 %     / Progress: [#####################-----------------------------]   43.41 %     - Progress: [######################----------------------------]   44.19 %     \ Progress: [######################----------------------------]   44.96 %     | Progress: [######################----------------------------]   45.74 %     / Progress: [#######################---------------------------]   46.51 %     - Progress: [#######################---------------------------]   47.29 %     \ Progress: [########################--------------------------]   48.06 %     | Progress: [########################--------------------------]   48.84 %     / Progress: [########################--------------------------]   49.61 %     - Progress: [#########################-------------------------]   50.39 %     \ Progress: [#########################-------------------------]   51.16 %     | Progress: [#########################-------------------------]   51.94 %     / Progress: [##########################------------------------]   52.71 %     - Progress: [##########################------------------------]   53.49 %     \ Progress: [###########################-----------------------]   54.26 %     | Progress: [###########################-----------------------]   55.04 %     / Progress: [###########################-----------------------]   55.81 %     - Progress: [############################----------------------]   56.59 %     \ Progress: [############################----------------------]   57.36 %     | Progress: [#############################---------------------]   58.14 %     / Progress: [#############################---------------------]   58.91 %     - Progress: [#############################---------------------]   59.69 %     \ Progress: [##############################--------------------]   60.47 %     | Progress: [##############################--------------------]   61.24 %     / Progress: [###############################-------------------]   62.02 %     - Progress: [###############################-------------------]   62.79 %     \ Progress: [###############################-------------------]   63.57 %     | Progress: [################################------------------]   64.34 %     / Progress: [################################------------------]   65.12 %     - Progress: [################################------------------]   65.89 %     \ Progress: [#################################-----------------]   66.67 %     | Progress: [#################################-----------------]   67.44 %     / Progress: [##################################----------------]   68.22 %     - Progress: [##################################----------------]   68.99 %     \ Progress: [##################################----------------]   69.77 %     | Progress: [###################################---------------]   70.54 %     / Progress: [###################################---------------]   71.32 %     - Progress: [####################################--------------]   72.09 %     \ Progress: [####################################--------------]   72.87 %     | Progress: [####################################--------------]   73.64 %     / Progress: [#####################################-------------]   74.42 %     - Progress: [#####################################-------------]   75.19 %     \ Progress: [#####################################-------------]   75.97 %     | Progress: [######################################------------]   76.74 %     / Progress: [######################################------------]   77.52 %     - Progress: [#######################################-----------]   78.29 %     \ Progress: [#######################################-----------]   79.07 %     | Progress: [#######################################-----------]   79.84 %     / Progress: [########################################----------]   80.62 %     - Progress: [########################################----------]   81.40 %     \ Progress: [#########################################---------]   82.17 %     | Progress: [#########################################---------]   82.95 %     / Progress: [#########################################---------]   83.72 %     - Progress: [##########################################--------]   84.50 %     \ Progress: [##########################################--------]   85.27 %     | Progress: [###########################################-------]   86.05 %     / Progress: [###########################################-------]   86.82 %     - Progress: [###########################################-------]   87.60 %     \ Progress: [############################################------]   88.37 %     | Progress: [############################################------]   89.15 %     / Progress: [############################################------]   89.92 %     - Progress: [#############################################-----]   90.70 %     \ Progress: [#############################################-----]   91.47 %     | Progress: [##############################################----]   92.25 %     / Progress: [##############################################----]   93.02 %     - Progress: [##############################################----]   93.80 %     \ Progress: [###############################################---]   94.57 %     | Progress: [###############################################---]   95.35 %     / Progress: [################################################--]   96.12 %     - Progress: [################################################--]   96.90 %     \ Progress: [################################################--]   97.67 %     | Progress: [#################################################-]   98.45 %     / Progress: [#################################################-]   99.22 %     - Progress: [##################################################]  100.00 %     \ 
- Calculation of grid data took up wall clock time         0 s
- 
- Generating basins, please wait...
-   Attractor       X,Y,Z coordinate (Angstrom)                Value
-       1    2.76638708   -0.00201213   -0.04764504        132.63370191
-       2    4.40683643   -1.00744883    1.16946254        132.54025433
-       3    3.87765922    0.05090559    0.53444989         64.39183697
-       4    5.62394401    1.05634229    0.42861445          0.45330782
-       5    4.72434276    1.26801318    0.48153217         68.11330602
-       6    4.45975415    1.85010811   -0.20639821          0.41795375
-       7    3.93057694   -1.69537920    1.32821571          0.41042868
-       8    5.14768452   -1.00744883    1.48696887          0.44190248
-       9    4.51267187    1.74427267    1.22238026          0.44518837
- Detecting boundary grids...
- There are      183289 grids at basin boundary
- Refining basin boundary...
- Generating basins took up wall clock time         1 s
- The number of unassigned grids:           0
- The number of grids travelled to box boundary:           0
- The number of interbasin grids:      175163
- 
-                  ============= Basin analysis =============
- -10 Return to main menu
- -6 Set parameter for attractor clustering or manually perform clustering
- -5 Export basins as cube file
- -4 Export attractors as pdb/pqr/txt/gjf file
- -3 Show information of attractors
- -2 Measure distances, angles and dihedral angles between attractors or atoms
- -1 Select the method for generating basins, current: Near-grid with refinement
-  0 Visualize attractors and basins
-  1 Regenerate basins and relocate attractors
-  2 Integrate real space functions in the basins
-  3 Calculate electric multipole moments and <r^2> for basins
-  4 Calculate localization index (LI) and delocalization index (DI) for basins
-  5 Output orbital overlap matrix in basins to BOM.txt in current folder
-  6 Output orbital overlap matrix in atoms to AOM.txt in current folder
-  7 Integrate real space functions in AIM basins with mixed type of grids
-  8 Calculate electric multipole moments in AIM basins with mixed type of grids
-  9 Obtain atomic contribution to population of external basins
- 11 Calculate orbital compositions contributed by various basins
- 0 Return
- 1 Integrate a specific function with atomic-center + uniform grids
- 2 The same as 1, but with exact refinement of basin boundary
- 3 The same as 2, but with approximate refinement of basin boundary
- Hint:
- Accuracy: 2>=3>>1     Time spent: 2>3>>1     Memory requirement: 3>2=1
- Please select integrand:
- -2 Return
- -1 Deformation density
-             ----------- Available real space functions -----------
- 1 Electron density                 2 Gradient norm of electron density
- 3 Laplacian of electron density    4 Value of orbital wavefunction
- 5 Electron spin density
- 6 Hamiltonian kinetic energy density K(r)
- 7 Lagrangian kinetic energy density G(r)
- 8 Electrostatic potential from nuclear charges
- 9 Electron Localization Function (ELF)
- 10 Localized orbital locator (LOL)
- 11 Local information entropy
- 12 Total electrostatic potential (ESP)
- 13 Reduced density gradient (RDG)     14 RDG with promolecular approximation
- 15 Sign(lambda2)*rho    16 Sign(lambda2)*rho with promolecular approximation
- 17 Correlation hole for alpha, ref. point:   0.00000   0.00000   0.00000
- 18 Average local ionization energy (ALIE)
- 19 Source function, mode: 1, ref. point:   0.00000   0.00000   0.00000
- 20 Electron delocalization range function EDR(r;d)
- 21 Orbital overlap distance function D(r)
- 22 Delta-g (promol. approx.)     23 Delta-g (Hirshfeld partition)
- 100 User-defined function (iuserfunc=    0)  See Section 2.7 of manual
- 
- Integrating in trust sphere...
-
- Attractor     1 corresponds to atom     3 (O )
- The trust radius of attractor     1 is     1.347 Bohr
-
- Attractor     2 corresponds to atom     4 (N )
- The trust radius of attractor     2 is     1.116 Bohr
-
- Attractor     3 corresponds to atom     2 (C )
- The trust radius of attractor     3 is     0.766 Bohr
-
- Attractor     4 corresponds to atom     8 (H )
- The trust radius of attractor     4 is     0.504 Bohr
-
- Attractor     5 corresponds to atom     1 (C )
- The trust radius of attractor     5 is     0.842 Bohr
-
- Attractor     6 corresponds to atom     9 (H )
- The trust radius of attractor     6 is     0.488 Bohr
-
- Attractor     7 corresponds to atom     5 (H )
- The trust radius of attractor     7 is     0.210 Bohr
-
- Attractor     8 corresponds to atom     6 (H )
- The trust radius of attractor     8 is     0.155 Bohr
-
- Attractor     9 corresponds to atom     7 (H )
- The trust radius of attractor     9 is     0.504 Bohr
- Integration result inside trust spheres
-   #Sphere       Integral(a.u.)
-       1          6.4389090962
-       2          4.4210463935
-       3          2.4261500120
-       4          0.1652607286
-       5          2.6630354608
-       6          0.1410223889
-       7          0.0158385266
-       8          0.0074462041
-       9          0.1619377939
- Sum of above values:         16.44064660
- 
- Integrating uniform grids...
- 
- Total result:
-   #Basin        Integral(a.u.)      Vol(Bohr^3)    Vol(rho>0.001)
-       1          9.1252879484         527.775         108.934
-       2          8.2484410164         543.400         103.380
-       3          4.7277861345         102.257          41.856
-       4          1.0735319620         349.583          41.922
-       5          5.7110384868         223.655          64.000
-       6          0.9719796890         361.542          39.957
-       7          0.5414989271         288.637          20.342
-       8          0.5211226515         221.904          18.475
-       9          1.0796199967         422.135          43.178
- Sum of above integrals:         32.00030681
- Sum of basin volumes (rho>0.001):     482.044 Bohr^3
- 
- Normalization factor of the integral of electron density is    1.000010
- The atomic charges after normalization and atomic volumes:
-      1 (C )    Charge:    0.289016     Volume:    64.000 Bohr^3
-      2 (C )    Charge:    1.272259     Volume:    41.856 Bohr^3
-      3 (O )    Charge:   -1.125200     Volume:   108.934 Bohr^3
-      4 (N )    Charge:   -1.248362     Volume:   103.380 Bohr^3
-      5 (H )    Charge:    0.458506     Volume:    20.342 Bohr^3
-      6 (H )    Charge:    0.478882     Volume:    18.475 Bohr^3
-      7 (H )    Charge:   -0.079610     Volume:    43.178 Bohr^3
-      8 (H )    Charge:   -0.073522     Volume:    41.922 Bohr^3
-      9 (H )    Charge:    0.028030     Volume:    39.957 Bohr^3
- 
-
- Integrating basins took up wall clock time         1 s
- 
-                  ============= Basin analysis =============
- -10 Return to main menu
- -6 Set parameter for attractor clustering or manually perform clustering
- -5 Export basins as cube file
- -4 Export attractors as pdb/pqr/txt/gjf file
- -3 Show information of attractors
- -2 Measure distances, angles and dihedral angles between attractors or atoms
- -1 Select the method for generating basins, current: Near-grid with refinement
-  0 Visualize attractors and basins
-  1 Regenerate basins and relocate attractors
-  2 Integrate real space functions in the basins
-  3 Calculate electric multipole moments and <r^2> for basins
-  4 Calculate localization index (LI) and delocalization index (DI) for basins
-  5 Output orbital overlap matrix in basins to BOM.txt in current folder
-  6 Output orbital overlap matrix in atoms to AOM.txt in current folder
-  7 Integrate real space functions in AIM basins with mixed type of grids
-  8 Calculate electric multipole moments in AIM basins with mixed type of grids
-  9 Obtain atomic contribution to population of external basins
- 11 Calculate orbital compositions contributed by various basins
- 
- Note: A set of grid data is presented in memory
- "q": Exit program gracefully          "r": Load a new file
-                    ************ Main function menu ************
- 0 Show molecular structure and view orbitals
- 1 Output all properties at a point       2 Topology analysis
- 3 Output and plot specific property in a line
- 4 Output and plot specific property in a plane
- 5 Output and plot specific property within a spatial region (calc. grid data)
- 6 Check & modify wavefunction
- 7 Population analysis and calculation of atomic charges
- 8 Orbital composition analysis           9 Bond order analysis
- 10 Plot total DOS, partial DOS, OPDOS, local DOS and photoelectron spectrum
- 11 Plot IR/Raman/UV-Vis/ECD/VCD/ROA/NMR spectrum
- 12 Quantitative analysis of molecular surface
- 13 Process grid data
- 14 Adaptive natural density partitioning (AdNDP) analysis
- 15 Fuzzy atomic space analysis
- 16 Charge decomposition analysis (CDA) and plot orbital interaction diagram
- 17 Basin analysis                       18 Electron excitation analysis
- 19 Orbital localization analysis        20 Visual study of weak interaction
- 21 Energy decomposition analysis        22 Conceptual DFT (CDFT) analysis
- 23 ETS-NOCV analysis                    24 (Hyper)polarizability analysis
- 25 Electron delocalization and aromaticity analyses
- 100 Other functions (Part 1)            200 Other functions (Part 2)
- 300 Other functions (Part 3)
