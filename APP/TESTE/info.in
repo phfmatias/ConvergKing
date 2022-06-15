@@ -1,13 +1,13 @@
 ncela = 18
-nx = 7
-ny = 7
-nz = 7
+nx = 15
+ny = 2
+nz = 8
 name = acemid05
 metodo = HF
 base = 3-21g
 mem = 10GB
 cpu = 1
 sheril = False
-cMethod = AIM 
+cMethod = chelpg 
 nsteps = 5
 restart = False
