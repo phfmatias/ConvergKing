@@ -33,7 +33,7 @@ class step0:
             write += '#p {0}/{1} POP=({2},ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
 
         elif self.cMethod.lower() == 'aim':
-            write += '#p {0}/{1} out=wfn density=current NoSymm\n\n'.format(self.metodo,self.base)
+            write += '#p {0}/{1} AIM=CHARGES SCF=TIGHT GFINPUT IOP(6/7=3) density=current NoSymm\n\n'.format(self.metodo,self.base)
         
         elif self.cMethod.lower() == 'mulliken' and self.base == 'None' and len(self.radii) >0:
             write += '#p {0} POP=(Minimal,ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.base)
@@ -41,7 +41,6 @@ class step0:
             write += '#p {0}/{1} POP=(Minimal,ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.base)
         elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) ==0:
             write += '#p {0}/{1} POP=Minimal density=current NoSymm\n\n'.format(self.metodo,self.base)
-
 
         else:
             write += '#p {0}/{1} POP={2} density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
@@ -56,9 +55,9 @@ class step0:
                 write += '{} {}'.format(self.radii[i], self.radii[i+1])
             write+='\n'
 
-        if self.cMethod.lower() == 'aim':
-            write+= '{}_wfn.wfn'.format(self.name)
-            write+='\n'
+        #if self.cMethod.lower() == 'aim':
+        #    write+= '{}_wfn.wfn'.format(self.name)
+        #    write+='\n'
 
         return write
     

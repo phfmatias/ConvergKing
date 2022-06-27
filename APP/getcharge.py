@@ -7,8 +7,8 @@ class get_charge:
     def __init__(self,cMethod,monomer):
         self.cMethod = cMethod
         self.log = [x for x in listdir() if '.log' in x][0]
-        if self.cMethod.lower() == 'aim':
-            self.txt = [x for x in listdir() if '.txt' in x][0]
+        #if self.cMethod.lower() == 'aim':
+        #    self.txt = [x for x in listdir() if '.txt' in x][0]
         self.calculosOk()
         self.monomer = monomer
         self.cargas = self.getCharge()
@@ -47,7 +47,9 @@ class get_charge:
                 if 'Summary of Natural Population' in rlines[i]:
                     start = i+6
 
-                    end = i+len(self.monomer)+6
+                    #end = i+len(self.monomer)+6
+                if '* Total *' in rlines[i]:
+                    end = i-1
 
         elif self.cMethod.lower() == 'mulliken':
             arq = open(self.log,'r')
@@ -62,17 +64,21 @@ class get_charge:
                     end = i
 
         elif self.cMethod.lower() == 'aim':
-            arq = open(self.txt,'r')
+            arq = open(self.log,'r')
             rlines = arq.readlines()
-            
-            for i in range(len(rlines)):
 
-                if 'The atomic charges after normalization and atomic volumes:' in rlines[i]:
-                    start = i+1
-    
-                    end = i+len(self.monomer)+1
-        #print(start,end)
-        #print(rlines[start:end])
+            for i in range(len(rlines)):
+                if 'III. PROPERTIES OF ATTRACTORS' in rlines[i]:
+                    start = i+6
+                    end = i+5+len(self.monomer)+1
+            
+            #for i in range(len(rlines)):
+#
+            #    if 'The atomic charges after normalization and atomic volumes:' in rlines[i]:
+            #        start = i+1
+    #
+            #        end = i+len(self.monomer)+1
+
         return rlines[start:end]
 
     def calculosOk(self):
@@ -86,7 +92,7 @@ class get_charge:
                 exit(0)
 
 if __name__ == '__main__':
-    y = Molecule()
+    y = Molecule()    
     y.addAtom('C',-0.91782400,-0.35215350,-1.45464850)
     y.addAtom('C',-1.75330700,-1.60756650,-1.40140350)
     y.addAtom('O',-2.87534800,-1.65245250,-1.94042650)
@@ -95,6 +101,5 @@ if __name__ == '__main__':
     y.addAtom('H',-0.42521100,-2.62600950,-0.38446650)
     y.addAtom('H',-1.14347400,0.15074850,-0.668095500)
     y.addAtom('H',0.00000000,-0.59569250,-1.480303500)
-    y.addAtom('H',-1.20093500,0.27017850,-2.171325500)
-
+    y.addAtom('H',-1.20093500,0.27017850,-2.171325500)    
     get_charge('aim',y)

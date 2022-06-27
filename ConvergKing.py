@@ -3,7 +3,7 @@ from time import time
 from os import chdir,getcwd
 from sys import argv
 from subprocess import call
-from APP.runqm import run_g16, run_mwfn
+from APP.runqm import run_g16
 from APP.step0 import step0
 from APP.header import header
 from APP.getcharge import get_charge
@@ -52,9 +52,9 @@ if __name__ == '__main__':
         step0(conv.name, conv.metodo, conv.base, monomer,conv.cpu,conv.mem,conv.sheril,conv.radii,conv.cMethod)
         chdir('step0')
         run_g16()
-        if conv.cMethod.lower() == 'aim':
-            run_mwfn(conv.cMethod)
-            call('bash temp.sh', shell=True)   
+        #if conv.cMethod.lower() == 'aim':
+            #run_mwfn(conv.cMethod)
+            #call('bash temp.sh', shell=True)   
         header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
         cargas = get_charge(conv.cMethod,monomer).cargas
         chdir(home)
@@ -64,9 +64,9 @@ if __name__ == '__main__':
             step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
             chdir('step{}'.format(x))
             run_g16()
-            if conv.cMethod.lower() == 'aim':
-                run_mwfn(conv.cMethod)
-                call('bash temp.sh', shell=True)   
+            #if conv.cMethod.lower() == 'aim':
+            #    run_mwfn(conv.cMethod)
+            #    call('bash temp.sh', shell=True)   
             header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s\n'.format(h.getDipole(),(abs(start - time()))))
             cargas = get_charge(conv.cMethod,monomer).cargas
             chdir(home)
@@ -89,9 +89,9 @@ if __name__ == '__main__':
             step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
             chdir('step{}'.format(x))
             run_g16()
-            if conv.cMethod.lower() == 'aim':
-                run_mwfn(conv.cMethod)
-                call('bash temp.sh', shell=True)   
+            #if conv.cMethod.lower() == 'aim':
+            #    run_mwfn(conv.cMethod)
+            #    call('bash temp.sh', shell=True)   
             header.write('DIPOLE MOMENT = {:.4f} -> Runtime: {:.2f}s (RESTARTED)\n'.format(h.getDipole(),(abs(start - time()))))
             cargas = get_charge(conv.cMethod,monomer).cargas
             chdir(home)

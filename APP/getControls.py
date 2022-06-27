@@ -36,8 +36,8 @@ class getinfo:
             elif 'nz' in lines:
                 self.nz = int(lines.split()[2])
 
-            elif 'ncela' in lines:
-                self.ncela = int(lines.split()[2])
+            #elif 'ncela' in lines:
+            #    self.ncela = int(lines.split()[2])
 
             elif 'name' in lines:
                 self.name = lines.split()[2]

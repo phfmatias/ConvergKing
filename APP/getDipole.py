@@ -22,7 +22,7 @@ class getdipole:
         rlines = x.readlines()
         tot = []
         for i in range(len(rlines)):
-            if 'Tot=' in rlines[i]:
+            if 'Tot=' in rlines[i] and 'NPt' not in rlines[i]:
                 tot.append(rlines[i])
         dipole = float(tot[-1].split()[7])
         return dipole

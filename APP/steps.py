@@ -12,13 +12,13 @@ class step:
         self.radii = radii
         self.step = step
         self.cargas = cargas
-        self.ncela = ncela
+        #self.ncela = ncela
         self.sheril = sheril
         self.nx = nx
         self.ny = ny
+        self.nz = nz
         self.cpu = cpu
         self.mem = mem
-        self.nz = nz
         self.cMethod = cMethod
         self.cela = self.constructSM()
         self.string = self.inputConstructor()
@@ -34,7 +34,8 @@ class step:
             celaT = open('supercell.xyz','r') #pegar as posições gerados no  cristalatte            
             M = self.molecula
             Monomero = Molecule()
-            Cela = Molecule()
+            Cela = Molecule()           
+
             cargasSherril = []
 
             if self.cMethod.lower() == 'chelpg' or self.cMethod.lower() == 'chelp' or self.cMethod.lower() == 'mk' or self.cMethod.lower() == 'mulliken':
@@ -55,7 +56,7 @@ class step:
 
             elif self.cMethod.lower() == 'aim':
                 for i in range(len(M)):
-                    Monomero.addAtom(M[i].getAtomicSymbol(),M[i].getX(), M[i].getY(),M[i].getZ(),float(cel[i].split()[4]))
+                    Monomero.addAtom(M[i].getAtomicSymbol(),M[i].getX(), M[i].getY(),M[i].getZ(),float(cel[i].split()[3]))
 
             for atom in Monomero:
                 for x in arange(self.nx):
@@ -63,14 +64,16 @@ class step:
                         for z in arange(self.nz):
                             cargasSherril.append(atom.getCharge())
 
+            rlines = celaT.readlines() 
+            ncela = int(int(rlines[0])/(self.nx*self.nz*self.ny*len(Monomero)))
+
             for atom in Monomero:
                 for x in arange(self.nx):
                     for y in arange(self.ny):
                         for z in arange(self.nz):
-                            for i in arange(self.ncela-1):
-                                cargasSherril.append(atom.getCharge())
-
-            rlines = celaT.readlines()
+                            for i in arange(ncela-1):
+                                cargasSherril.append(atom.getCharge())                    
+           
             xyz = []
             for atom in Monomero:
                 xyz.append('{},{:.8f},{:.8f},{:.8f}\n'.format(atom.getAtomicSymbol(), atom.getX(), atom.getY(), atom.getZ()))                
@@ -140,7 +143,7 @@ class step:
 
             elif self.cMethod.lower() == 'aim':
                 for linhas in self.cargas:
-                    cargas.append(linhas.split()[4])
+                    cargas.append(linhas.split()[3])
 
             for lines in pos_envolvida[2:]:
                 lines = '{},{},{}'.format(lines.split()[1],lines.split()[2],lines.split()[3])
@@ -178,7 +181,8 @@ class step:
             write += '#p {0}/{1} POP=({2},ReadRadii) density=current NoSymm Charge\n\n'.format(self.metodo,self.base,self.cMethod)
 
         elif self.cMethod.lower() == 'aim':
-            write += '#p {0}/{1} out=wfn density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
+            write += '#p {0}/{1} AIM=CHARGES SCF=TIGHT GFINPUT IOP(6/7=3) density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
+            #write += '#p {0}/{1} out=wfn density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
 
         elif self.cMethod.lower() == 'mulliken' and self.base == 'None' and len(self.radii) >0:
             write += '#p {0} POP=(Minimal,ReadRadii) density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
@@ -205,9 +209,9 @@ class step:
                 write += '{} {}'.format(self.radii[i], self.radii[i+1])        
             write+='\n'
 
-        if self.cMethod == 'AIM':
-            write+= '{}_wfn.wfn'.format(self.name)
-            write+='\n'
+        #if self.cMethod == 'AIM':
+        #    write+= '{}_wfn.wfn'.format(self.name)
+        #    write+='\n'
 
         return write
 
@@ -231,8 +235,6 @@ if __name__ == '__main__':
     #cargas = ['      1 (C )    Charge:    0.405047     Volume:    57.842 Bohr^3\n', '      2 (C )    Charge:    1.557571     Volume:    37.877 Bohr^3\n', '      3 (O )    Charge:   -0.998289     Volume:    88.498 Bohr^3\n', '      4 (N )    Charge:   -1.984958     Volume:   120.923 Bohr^3\n', '      7 (H )    Charge:   -0.144038     Volume:    42.849 Bohr^3\n', '      8 (H )    Charge:   -0.172902     Volume:    43.356 Bohr^3\n', '      9 (H )    Charge:   -0.092865     Volume:    42.578 Bohr^3\n', ' \n', '\n']
     
     #cargas = ['     1  C   -0.566093\n', '     2  C    0.987178\n', '     3  O   -0.682453\n', '     4  N   -1.112693\n', '     5  H    0.460430\n', '     6  H    0.442831\n', '     7  H    0.164643\n', '     8  H    0.149555\n', '     9  H    0.156603\n']
-
-    
 
     y.addAtom('C',4.730509,1.288533,0.463983)
     y.addAtom('C',3.895041,0.033141,0.517227)
