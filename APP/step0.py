@@ -26,38 +26,43 @@ class step0:
         write = '%nprocshared={}\n'.format(self.cpu)
         write += '%mem={}\n'.format(self.mem)
 
-        if self.vsns == True:
-            write += '#p {0}/{1} POP={2} SCF=QC density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
+        #if self.vsns == True:
+        #    write += '#p {0}/{1} POP={2} SCF=QC density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
         
-        elif self.vsns == True and self.cMethod == 'aim':
+        if self.vsns == True and self.cMethod == 'aim':
             write += '#p {0}/{1} AIM=CHARGES SCF=QC GFINPUT IOP(6/7=3) density=current NoSymm\n\n'.format(self.metodo,self.base)
-
-        if self.vsns == False:
-
-            if self.base == 'None' and len(self.radii) == 0:
-                write += '#p {0} POP={1} density=current NoSymm\n\n'.format(self.metodo,self.cMethod)
-            elif self.base == 'None' and len(self.radii) >0:
-                write += '#p {0} POP=({},ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.cMethod)
-            elif self.base != 'None' and len(self.radii) >0:
-                write += '#p {0}/{1} POP=({2},ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
-
-            elif self.cMethod.lower() == 'aim':
-                write += '#p {0}/{1} AIM=CHARGES SCF=TIGHT GFINPUT IOP(6/7=3) density=current NoSymm\n\n'.format(self.metodo,self.base)
-
-            elif self.cMethod.lower() == 'mulliken' and self.base == 'None' and len(self.radii) >0:
-                write += '#p {0} POP=(Minimal,ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.base)
-            elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) >0:
-                write += '#p {0}/{1} POP=(Minimal,ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.base)
-            elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) ==0:
-                write += '#p {0}/{1} POP=Minimal density=current NoSymm\n\n'.format(self.metodo,self.base)
-
-            else:
-                write += '#p {0}/{1} POP={2} density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
+        
+        if self.base == 'None' and len(self.radii) == 0:
+            write += '#p {0} POP={1} density=current NoSymm\n\n'.format(self.metodo,self.cMethod)
+        
+        elif self.base == 'None' and len(self.radii) >0:
+            write += '#p {0} POP=({},ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.cMethod)
+        
+        elif self.base != 'None' and len(self.radii) >0:
+            write += '#p {0}/{1} POP=({2},ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
+        
+        elif self.cMethod.lower() == 'aim':
+            write += '#p {0}/{1} AIM=CHARGES SCF=TIGHT GFINPUT IOP(6/7=3) density=current NoSymm\n\n'.format(self.metodo,self.base)
+        
+        elif self.cMethod.lower() == 'mulliken' and self.base == 'None' and len(self.radii) >0:
+            write += '#p {0} POP=(Minimal,ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.base)
+        
+        elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) >0:
+            write += '#p {0}/{1} POP=(Minimal,ReadRadii) density=current NoSymm\n\n'.format(self.metodo,self.base)
+        
+        elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) ==0:
+            write += '#p {0}/{1} POP=Minimal density=current NoSymm\n\n'.format(self.metodo,self.base)
+        
+        else:
+            write += '#p {0}/{1} POP={2} density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
+        
         write += 'STEP 0 \n\n'
         write += '0 1\n'
+        
         for atoms in self.molecula:
             write += '{} {:10.6f} {:10.6f} {:10.6f}\n'.format(atoms.getAtomicSymbol(),(atoms.getX()),float(atoms.getY()),float(atoms.getZ()))
         write+='\n'
+        
         if len(self.radii) > 0:
             for i in arange(0, len(self.radii), 2):
                 write += '{} {}'.format(self.radii[i], self.radii[i+1])
