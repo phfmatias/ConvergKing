@@ -4,7 +4,7 @@ from numpy import arange
 
 class step0:
 
-    def __init__(self,name,metodo,base,molecula,cpu,mem,sheril,radii,cMethod):
+    def __init__(self,name,metodo,base,molecula,cpu,mem,sheril,radii,cMethod,vsns):
         self.metodo = metodo
         self.base = base
         self.name = name
@@ -14,6 +14,7 @@ class step0:
         self.sheril = sheril
         self.molecula = molecula
         self.cMethod = cMethod
+        self.vsns = vsns
         self.string = self.inputConstructor()
         if 'step0' in listdir():
             pass
@@ -24,6 +25,12 @@ class step0:
     def inputConstructor(self):
         write = '%nprocshared={}\n'.format(self.cpu)
         write += '%mem={}\n'.format(self.mem)
+
+        if self.vsns == True:
+            write += '#p {0}/{1} POP={3} SCF=QC density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
+        
+        elif self.vsns == True and self.cMethod == 'aim':
+            write += '#p {0}/{1} AIM=CHARGES SCF=QC GFINPUT IOP(6/7=3) density=current NoSymm\n\n'.format(self.metodo,self.base)
 
         if self.base == 'None' and len(self.radii) == 0:
             write += '#p {0} POP={1} density=current NoSymm\n\n'.format(self.metodo,self.cMethod)

@@ -210,7 +210,7 @@ class step:
                     CelaTrue.addChargePoints(float(cp[0]),float(cp[1]),float(cp[2]),float(cp[3]))
 
             Cela = CelaTrue
-            
+
             return Cela
 
         if self.sheril == False and self.vsns == False:
@@ -284,6 +284,12 @@ class step:
         ipt = '%chk={}_step{}.chk'.format(self.name,self.step)
         write = '%nprocshared={}\n'.format(self.cpu)
         write += '%mem={}\n'.format(self.mem)
+
+        if self.vsns == True:
+            write += '#p {0}/{1} POP={3} SCF=QC density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)        
+        elif self.vsns == True and self.cMethod == 'aim':
+            write += '#p {0}/{1} AIM=CHARGES SCF=QC GFINPUT IOP(6/7=3) density=current NoSymm\n\n'.format(self.metodo,self.base)
+
         if self.base == 'None' and len(self.radii) == 0:
             write += '#p {0} POP={1} density=current NoSymm Charge\n\n'.format(self.metodo,self.cMethod)
         elif self.base == 'None' and len(self.radii) >0:
@@ -291,10 +297,8 @@ class step:
         elif self.base != 'None' and len(self.radii) >0:
             write += '#p {0}/{1} POP=({2},ReadRadii) density=current NoSymm Charge\n\n'.format(self.metodo,self.base,self.cMethod)
 
-        elif self.cMethod.lower() == 'aim':
+        elif self.cMethod.lower() == 'aim' and self.vsns == False:
             write += '#p {0}/{1} AIM=CHARGES SCF=TIGHT GFINPUT IOP(6/7=3) density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
-            #write += '#p {0}/{1} out=wfn density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
-
         elif self.cMethod.lower() == 'mulliken' and self.base == 'None' and len(self.radii) >0:
             write += '#p {0} POP=(Minimal,ReadRadii) density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
         elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) >0:
