@@ -53,16 +53,15 @@ class step0:
 
             else:
                 write += '#p {0}/{1} POP={2} density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
-            write += 'STEP 0 \n\n'
-            write += '0 1\n'
-            for atoms in self.molecula:
-                write += '{} {:10.6f} {:10.6f} {:10.6f}\n'.format(atoms.getAtomicSymbol(),(atoms.getX()),float(atoms.getY()),float(atoms.getZ()))
+        write += 'STEP 0 \n\n'
+        write += '0 1\n'
+        for atoms in self.molecula:
+            write += '{} {:10.6f} {:10.6f} {:10.6f}\n'.format(atoms.getAtomicSymbol(),(atoms.getX()),float(atoms.getY()),float(atoms.getZ()))
+        write+='\n'
+        if len(self.radii) > 0:
+            for i in arange(0, len(self.radii), 2):
+                write += '{} {}'.format(self.radii[i], self.radii[i+1])
             write+='\n'
-
-            if len(self.radii) > 0:
-                for i in arange(0, len(self.radii), 2):
-                    write += '{} {}'.format(self.radii[i], self.radii[i+1])
-                write+='\n'
 
         #if self.cMethod.lower() == 'aim':
         #    write+= '{}_wfn.wfn'.format(self.name)
