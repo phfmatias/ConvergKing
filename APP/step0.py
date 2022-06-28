@@ -27,7 +27,7 @@ class step0:
         write += '%mem={}\n'.format(self.mem)
 
         if self.vsns == True:
-            write += '#p {0}/{1} POP={3} SCF=QC density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
+            write += '#p {0}/{1} POP={2} SCF=QC density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)
         
         elif self.vsns == True and self.cMethod == 'aim':
             write += '#p {0}/{1} AIM=CHARGES SCF=QC GFINPUT IOP(6/7=3) density=current NoSymm\n\n'.format(self.metodo,self.base)
