@@ -289,6 +289,7 @@ class step:
             write += '#p {0}/{1} POP={2} SCF=QC density=current NoSymm\n\n'.format(self.metodo,self.base,self.cMethod)        
         elif self.vsns == True and self.cMethod == 'aim':
             write += '#p {0}/{1} AIM=CHARGES SCF=QC GFINPUT IOP(6/7=3) density=current NoSymm\n\n'.format(self.metodo,self.base)
+            
 
         if self.vsns == False:
 
