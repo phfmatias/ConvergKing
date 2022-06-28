@@ -72,8 +72,6 @@ class get_charge:
                     start = i+6
                     end = i+5+len(self.monomer)+1
             
-        print(rlines[start:end])
-
         return rlines[start:end]
 
     def calculosOk(self):
