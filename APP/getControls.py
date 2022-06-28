@@ -2,7 +2,6 @@ from sys import exit
 
 class getinfo:
     def __init__(self):
-        self.ncela = 4
         self.nx = 7
         self.ny = 7
         self.nz = 7
@@ -15,6 +14,7 @@ class getinfo:
         self.cMethod = 'ChelpG'
         self.nsteps = 10
         self.restart = False
+        self.vsns = False
         self.radii = []
         self.get_info()
 
@@ -53,6 +53,12 @@ class getinfo:
 
             elif 'nsteps' in lines:
                 self.nsteps = int(lines.split()[2])+1
+
+            elif 'vsns' in lines:
+                if lines.split()[2] == 'False':
+                    self.vsns = False
+                else:
+                    self.vsns = True
 
             elif 'restart' in lines:
                 if lines.split()[2] == 'False':

@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     if conv.restart == False:
         header.write('\nRUNNING -> STEP0 -> ')
-        step0(conv.name, conv.metodo, conv.base, monomer,conv.cpu,conv.mem,conv.sheril,conv.radii,conv.cMethod)
+        step0(conv.name, conv.metodo, conv.base, monomer,conv.cpu,conv.mem,conv.sheril,conv.radii,conv.cMethod,conv.vsns)
         chdir('step0')
         run_g16()
         #if conv.cMethod.lower() == 'aim':
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
         for x in range(1,conv.nsteps):
             header.write('RUNNING -> STEP{} -> '.format(x))
-            step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
+            step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod,conv.vsns)
             chdir('step{}'.format(x))
             run_g16()
             #if conv.cMethod.lower() == 'aim':
@@ -71,7 +71,7 @@ if __name__ == '__main__':
             cargas = get_charge(conv.cMethod,monomer).cargas
             chdir(home)
         getdipole(conv.name,x,conv.cMethod)
-        step('final', conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
+        step('final', conv.metodo, conv.base, monomer, conv.name, cargas, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod,conv.vsns)
     
     if conv.restart == True:    
         chdir('step'+str(rStep))
@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
         for x in range(rStep+1,conv.nsteps):
             header.write('RUNNING -> STEP{} -> '.format(x))
-            step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
+            step(x, conv.metodo, conv.base, monomer, conv.name, cargas, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod,conv.vsns)
             chdir('step{}'.format(x))
             run_g16()
             #if conv.cMethod.lower() == 'aim':
@@ -96,7 +96,7 @@ if __name__ == '__main__':
             cargas = get_charge(conv.cMethod,monomer).cargas
             chdir(home)
         getdipole(conv.name,x,conv.cMethod)
-        step('final', conv.metodo, conv.base, monomer, conv.name, cargas, conv.ncela, conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod)
+        step('final', conv.metodo, conv.base, monomer, conv.name, cargas,  conv.nx, conv.ny, conv.nz, conv.cpu, conv.mem, conv.sheril,conv.radii,conv.cMethod,conv.vsns)
 
     if conv.cMethod.lower() == 'chelp' or conv.cMethod.lower() == 'chelpg':
         header.write('\nThe converged ESP Charge using {} scheme are:\n\n'.format(conv.cMethod))

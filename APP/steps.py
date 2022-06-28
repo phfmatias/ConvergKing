@@ -4,7 +4,7 @@ from numpy import arange
 
 class step:
 
-    def __init__(self, step,metodo, base, molecula, name, cargas,ncela,nx,ny,nz,cpu,mem,sheril,radii,cMethod):
+    def __init__(self, step,metodo, base, molecula, name, cargas,nx,ny,nz,cpu,mem,sheril,radii,cMethod,vsns):
         self.metodo = metodo
         self.base = base
         self.name = name
@@ -14,6 +14,7 @@ class step:
         self.cargas = cargas
         #self.ncela = ncela
         self.sheril = sheril
+        self.vsns = vsns
         self.nx = nx
         self.ny = ny
         self.nz = nz
@@ -102,7 +103,117 @@ class step:
 
             return Cela
 
-        if self.sheril == False:
+        if self.sheril == False and self.vsns == True:
+            M = self.molecula
+            Monomero = Molecule()
+            cont_pos = 0
+            cont_carga = 0
+            contador = []
+            x = []
+            y = []
+            z = []
+            cargas = []
+            xyz = []
+
+            for i in range(len(M)):
+                Monomero.addAtom(M[i].getAtomicSymbol(),M[i].getX(), M[i].getY(),M[i].getZ())
+
+            for atom in Monomero:
+                xyz.append('{:.6f},{:.6f},{:.6f}'.format(atom.getX(), atom.getY(), atom.getZ()))
+
+            natomos = len(M)
+            pos = open('supercell.xyz','r')
+            pos_envolvida = pos.readlines()
+            ngeo = len(pos_envolvida[2:])
+            nlinhas = len(pos_envolvida)-2-len(M)
+
+            if self.cMethod.lower() == 'chelpg' or self.cMethod.lower() == 'chelp' or self.cMethod.lower() == 'mk' or self.cMethod.lower() == 'mulliken':
+                for linhas in self.cargas:
+                    cargas.append(linhas.split()[2])
+
+            elif self.cMethod.lower() == 'cm5':
+                for linhas in self.cargas:
+                    cargas.append(linhas.split()[7])
+
+            elif self.cMethod.lower() == 'hirshfeld':
+                for linhas in self.cargas:
+                    cargas.append(linhas.split()[2])
+
+            elif self.cMethod.lower() == 'nbo' or self.cMethod.lower() == 'npa':
+                for linhas in self.cargas:
+                    cargas.append(linhas.split()[2])
+
+            elif self.cMethod.lower() == 'aim':
+                for linhas in self.cargas:
+                    cargas.append(linhas.split()[3])
+
+            for lines in pos_envolvida[2:]:
+                lines = '{},{},{}'.format(lines.split()[1],lines.split()[2],lines.split()[3])
+                #if lines in xyz:
+                #    pass
+                #else:
+                x.append(lines.split(',')[0])
+                y.append(lines.split(',')[1])
+                z.append(lines.split(',')[2])
+
+            Cela =  Molecule()
+
+            nmoleculas = 8788            
+
+            cont_carga = 0
+
+            for i in range(0,(nmoleculas*34)+1):
+                if cont_carga != 34 and i != nmoleculas:    
+                    Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
+                    cont_carga +=1
+                if cont_carga == 34 and i != nmoleculas:
+                    cont_carga = 0
+
+            cont_carga = 34
+
+            for i in range((nmoleculas*34)+1,(nmoleculas*55)+1):
+                if cont_carga != 55 and i != nmoleculas:    
+                    Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
+                    cont_carga +=1
+                if cont_carga == 55 and i != nmoleculas:
+                    cont_carga = 34
+
+            cont_carga = 55
+
+            for i in range((nmoleculas*55)+1,(nmoleculas*58)+1):
+                if cont_carga != 58 and i != nmoleculas:    
+                    Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
+                    cont_carga +=1
+                if cont_carga == 58 and i != nmoleculas:
+                    cont_carga = 55
+
+            cont_carga = 58
+
+            for i in range((nmoleculas*57)+1,(nmoleculas*60)+1):
+                if cont_carga != 61 and i != nmoleculas:    
+                    Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
+                    cont_carga +=1
+                if cont_carga == 61 and i != nmoleculas:
+                    cont_carga = 58
+
+            CelaTrue = Molecule()
+        
+            for atom in Monomero:
+                CelaTrue.addAtom(atom)
+
+            c = 0
+
+            for cp in Cela.getChargePoints():
+                if '{},{},{}'.format(cp[0],cp[1],cp[2]) in xyz:
+                    pass
+                else:
+                    CelaTrue.addChargePoints(float(cp[0]),float(cp[1]),float(cp[2]),float(cp[3]))
+
+            Cela = CelaTrue
+            
+            return Cela
+
+        if self.sheril == False and self.vsns == False:
             M = self.molecula
             Monomero = Molecule()
             cont_pos = 0
@@ -155,7 +266,7 @@ class step:
                     z.append(lines.split(',')[2])    
 
             Cela =  Molecule()
-            
+
             while cont_pos != nlinhas:
                 Cela.addChargePoints(float(x[cont_pos]),float(y[cont_pos]),float(z[cont_pos]),float(cargas[cont_carga]))
                 cont_pos+=1
@@ -166,7 +277,7 @@ class step:
             
             for atom in Monomero:
                 Cela.addAtom(atom)
- 
+
             return Cela
 
     def inputConstructor(self):        
@@ -222,29 +333,68 @@ class step:
 if __name__ == '__main__':
     y = Molecule()
     
-    #cargas = ['1  C   -0.408347','2  C    0.850242','3  O   -0.622226','4  N   -0.997305','5  H    0.427780','6  H    0.408574','7  H    0.108310','8  H    0.111375','9  H    0.121598']
-
-    #cargas = ['     1  C   -0.069071   0.000000  -0.004429   0.001631   0.001796  -0.257900\n', '     2  C    0.252555   0.000000   0.057086   0.000544   0.035867   0.338368\n', '     3  O   -0.378188   0.000000   0.215417   0.005165   0.106119  -0.420389\n', '     4  N   -0.160250   0.000000  -0.000697   0.007556   0.030908  -0.731140\n', '     5  H    0.126925   0.000000  -0.102894  -0.178824   0.056036   0.365256\n', '     6  H    0.114270   0.000000   0.185122  -0.016905   0.091487   0.370562\n', '     7  H    0.037115   0.000000  -0.038276   0.092093   0.115553   0.111946\n', '     8  H    0.028665   0.000000   0.145320  -0.035485  -0.001485   0.106383\n', '     9  H    0.047980   0.000000  -0.042070   0.117884  -0.101003   0.116913\n']
-
-    #cargas = ['      C    1   -0.68329      1.99838     4.68088    0.00403     6.68329\n', '      C    2    0.76766      1.99925     3.19323    0.03986     5.23234\n', '      O    3   -0.66883      1.99965     6.66735    0.00183     8.66883\n', '      N    4   -0.86869      1.99894     5.86334    0.00641     7.86869\n', '      H    5    0.40088      0.00000     0.59697    0.00214     0.59912\n', '      H    6    0.37705      0.00000     0.62184    0.00111     0.62295\n', '      H    7    0.22873      0.00000     0.76959    0.00168     0.77127\n', '      H    8    0.20315      0.00000     0.79493    0.00192     0.79685\n', '      H    9    0.24333      0.00000     0.75474    0.00193     0.75667\n']
-
-    #cargas = ['     1  C   -0.727292\n', '     2  C    0.801969\n', '     3  O   -0.639957\n', '     4  N   -0.924040\n', '     5  H    0.364184\n', '     6  H    0.344818\n', '     7  H    0.272084\n', '     8  H    0.230675\n', '     9  H    0.277560\n']
-
-    #cargas = ['      1 (C )    Charge:    0.291104     Volume:    63.649 Bohr^3\n', '      2 (C )    Charge:    1.265493     Volume:    42.383 Bohr^3\n', '      3 (O )    Charge:   -1.012863     Volume:   108.150 Bohr^3\n', '      4 (N )    Charge:   -1.185355     Volume:   101.364 Bohr^3\n', '      5 (H )    Charge:    0.422926     Volume:    22.015 Bohr^3\n', '      6 (H )    Charge:    0.387384     Volume:    22.095 Bohr^3\n', '      7 (H )    Charge:   -0.072782     Volume:    42.841 Bohr^3\n', '      8 (H )    Charge:   -0.097471     Volume:    43.206 Bohr^3\n', '      9 (H )    Charge:    0.001563     Volume:    41.561 Bohr^3\n']
-
-    #cargas = ['      1 (C )    Charge:    0.405047     Volume:    57.842 Bohr^3\n', '      2 (C )    Charge:    1.557571     Volume:    37.877 Bohr^3\n', '      3 (O )    Charge:   -0.998289     Volume:    88.498 Bohr^3\n', '      4 (N )    Charge:   -1.984958     Volume:   120.923 Bohr^3\n', '      7 (H )    Charge:   -0.144038     Volume:    42.849 Bohr^3\n', '      8 (H )    Charge:   -0.172902     Volume:    43.356 Bohr^3\n', '      9 (H )    Charge:   -0.092865     Volume:    42.578 Bohr^3\n', ' \n', '\n']
+    cargas = ['     1  C    0.058959\n', '     2  H    0.164720\n', '     3  C   -0.212604\n', '     4  H    0.173666\n', '     5  C    0.112217\n', '     6  H    0.122024\n', '     7  C   -0.326464\n', '     8  H    0.191955\n', '     9  C    0.415547\n', '    10  C   -0.397518\n', '    11  H    0.190690\n', '    12  C   -0.030304\n', '    13  H    0.136557\n', '    14  C    0.157883\n', '    15  C   -0.405756\n', '    16  H    0.183219\n', '    17  C    0.323992\n', '    18  C    0.291090\n', '    19  C   -0.241793\n', '    20  H    0.181511\n', '    21  C   -0.236885\n', '    22  H    0.180323\n', '    23  C   -0.081754\n', '    24  H    0.124701\n', '    25  H    0.132542\n', '    26  H    0.068868\n', '    27  C    0.188826\n', '    28  H    0.012759\n', '    29  H    0.060542\n', '    30  H    0.010356\n', '    31  N   -0.067649\n', '    32  O   -0.656348\n', '    33  O   -0.325397\n', '    34  H    0.502737\n', '    35  C   -0.170774\n', '    36  C   -0.165602\n', '    37  H    0.111081\n', '    38  C    0.143189\n', '    39  C   -0.278699\n', '    40  H    0.154666\n', '    41  C   -0.134119\n', '    42  H    0.107945\n', '    43  C   -0.094901\n', '    44  H    0.104039\n', '    45  C   -0.277141\n', '    46  H    0.151727\n', '    47  C    0.206510\n', '    48  C   -0.345998\n', '    49  H    0.165071\n', '    50  C    0.045610\n', '    51  H    0.092306\n', '    52  O   -0.778291\n', '    53  O   -0.749955\n', '    54  O   -0.750949\n', '    55  S    1.471975\n', '    56  O   -0.948543\n', '    57  H    0.478658\n', '    58  H    0.463607\n', '    59  O   -1.007709\n', '    60  H    0.519602\n', '    61  H    0.483484\n']
     
-    #cargas = ['     1  C   -0.566093\n', '     2  C    0.987178\n', '     3  O   -0.682453\n', '     4  N   -1.112693\n', '     5  H    0.460430\n', '     6  H    0.442831\n', '     7  H    0.164643\n', '     8  H    0.149555\n', '     9  H    0.156603\n']
+    y.addAtom('C',-5.900792,4.088448,19.211769)
+    y.addAtom('H',-5.644930, 4.481152,20.015376)
+    y.addAtom('C',-7.160418, 4.275648,18.757121)
+    y.addAtom('H',-7.766678, 4.782336,19.246122)
+    y.addAtom('C',-7.533496, 3.703232,17.556560)
+    y.addAtom('H',-8.395515, 3.823040,17.227655)
+    y.addAtom('C',-6.621609, 2.959424,16.856342)
+    y.addAtom('H',-6.873560, 2.575872,16.047476)
+    y.addAtom('C',-5.328005, 2.764320,17.327099)
+    y.addAtom('C',-4.310879, 2.020346,16.611595)
+    y.addAtom('H',-3.457829, 1.975168,16.981099)
+    y.addAtom('C',-4.529586, 1.397760,15.455249)
+    y.addAtom('H',-5.394488, 1.446848,15.118783)
+    y.addAtom('C',-3.568493, 0.649792,14.658546)
+    y.addAtom('C',-4.022239,-0.002080,13.504174)
+    y.addAtom('H',-4.917179, 0.073216,13.263042)
+    y.addAtom('C',-3.175385,-0.750298,12.719305)
+    y.addAtom('C',-1.827914,-0.845312,13.063661)
+    y.addAtom('C',-1.365586,-0.190528,14.193871)
+    y.addAtom('H',-0.466609,-0.247104,14.423497)
+    y.addAtom('C',-2.225980, 0.542464,14.981534)
+    y.addAtom('H',-1.901153, 0.970944,15.740103)
+    y.addAtom('C',-3.672783, 3.164928,19.122516)
+    y.addAtom('H',-3.638527, 3.614208,19.970996)
+    y.addAtom('H',-3.008008, 3.535168,18.537686)
+    y.addAtom('H',-3.502511, 2.228928,19.249410)
+    y.addAtom('C', 0.329653,-1.661504,12.486392)
+    y.addAtom('H', 0.690401,-0.772928,12.523376)
+    y.addAtom('H', 0.761657,-2.154048,11.785353)
+    y.addAtom('H', 0.478277,-2.102464,13.325503)
+    y.addAtom('N',-5.007286, 3.345472,18.524537)
+    y.addAtom('O',-3.578142,-1.416563,11.604710)
+    y.addAtom('O',-1.058063,-1.595027,12.228167)
+    y.addAtom('H',-4.390670,-1.198080,11.407301)
+    y.addAtom('C', 0.743614, 8.990842,17.115554)
+    y.addAtom('C', 0.917200, 7.639757,17.043396)
+    y.addAtom('H', 0.451709, 7.081152,17.623787)
+    y.addAtom('C', 1.802044, 7.086144,16.090048)
+    y.addAtom('C', 2.013247, 5.690880,15.969235)
+    y.addAtom('H', 1.560937, 5.105152,16.532368)
+    y.addAtom('C', 2.874153, 5.201664,15.035119)
+    y.addAtom('H', 2.999823, 4.283136,14.962631)
+    y.addAtom('C', 3.568780, 6.061952,14.185324)
+    y.addAtom('H', 4.153427, 5.713344,13.550690)
+    y.addAtom('C', 3.397387, 7.403968,14.277865)
+    y.addAtom('H', 3.872276, 7.967232,13.711773)
+    y.addAtom('C', 2.505976, 7.958080,15.223487)
+    y.addAtom('C', 2.304052, 9.350016,15.334602)
+    y.addAtom('H', 2.767075, 9.928256,14.771962)
+    y.addAtom('C', 1.442762, 9.855872,16.253760)
+    y.addAtom('H', 1.314292,10.775232,16.313756)
+    y.addAtom('O',-1.468637, 8.797152,18.453693)
+    y.addAtom('O', 0.422848, 9.820928,19.545605)
+    y.addAtom('O',-0.750803,10.970586,17.788815)
+    y.addAtom('S',-0.344999, 9.689805,18.326963)
+    y.addAtom('O', 2.523148, 6.349824, 2.918231)
+    y.addAtom('H', 2.061028, 6.306560, 3.598067)
+    y.addAtom('H', 2.757953, 7.180160, 2.820595)
+    y.addAtom('O',10.909254, 7.557056,10.980431)
+    y.addAtom('H',10.788607, 8.186880,10.587093)
+    y.addAtom('H',10.179979, 7.113600,11.062123)
 
-    y.addAtom('C',4.730509,1.288533,0.463983)
-    y.addAtom('C',3.895041,0.033141,0.517227)
-    y.addAtom('O',2.773020,-0.011744,-0.021787)
-    y.addAtom('N',4.409480,-0.996630,1.179876)
-    y.addAtom('H',3.901534,-1.741664,1.366552)
-    y.addAtom('H',5.223114,-0.985284,1.534148)
-    y.addAtom('H',4.504864,1.791426,1.250524)
-    y.addAtom('H',5.648318,1.044998,0.438328)
-    y.addAtom('H',4.447404,1.910854,-0.252683)
-
-    x = step(1, 'HF', '3-21g', y, 'teste', cargas, 18, 7, 7, 7, 1, '10GB', False, '', 'aim')
-    #x = step0('teste', 'HF', '6-31g', y, 1, '2GB', False,'','ChelpG')
+    x = step(1, 'HF', '3-21g', y, 'teste', cargas, 13, 13, 13, 13, '10GB', False, '', 'chelpg',True)
