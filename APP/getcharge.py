@@ -71,7 +71,9 @@ class get_charge:
                 if 'III. PROPERTIES OF ATTRACTORS' in rlines[i]:
                     start = i+6
                     end = i+5+len(self.monomer)+1
-            
+        
+        print(rlines[start:end])
+        
         return rlines[start:end]
 
     def calculosOk(self):
@@ -149,4 +151,4 @@ if __name__ == '__main__':
     y.addAtom('H',10.788607, 8.186880,10.587093)
     y.addAtom('H',10.179979, 7.113600,11.062123)
 
-    get_charge('chelpg',y)
+    get_charge('chelp',y)

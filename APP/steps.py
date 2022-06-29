@@ -112,6 +112,7 @@ class step:
             x = []
             y = []
             z = []
+            debug = []
             cargas = []
             xyz = []
 
@@ -148,10 +149,12 @@ class step:
                     cargas.append(linhas.split()[3])
 
             for lines in pos_envolvida[2:]:
+                debug_line = '{}'.format(lines.split()[0])
                 lines = '{},{},{}'.format(lines.split()[1],lines.split()[2],lines.split()[3])
                 #if lines in xyz:
                 #    pass
                 #else:
+                debug.append(debug_line)
                 x.append(lines.split(',')[0])
                 y.append(lines.split(',')[1])
                 z.append(lines.split(',')[2])
@@ -162,38 +165,42 @@ class step:
 
             cont_carga = 0
 
-            for i in range(0,(nmoleculas*34)+1):
-                if cont_carga != 34 and i != nmoleculas:    
+            for i in range(0,(nmoleculas*34)):
+                if cont_carga != 34 and i != (nmoleculas*34):
+                    #print(i+1,cont_carga,debug[i],float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     cont_carga +=1
-                if cont_carga == 34 and i != nmoleculas:
+                if cont_carga == 34 and i != (nmoleculas*34):
                     cont_carga = 0
 
             cont_carga = 34
 
-            for i in range((nmoleculas*34)+1,(nmoleculas*55)+1):
+            for i in range((nmoleculas*34),(nmoleculas*55)):
                 if cont_carga != 55 and i != nmoleculas:    
+                    #print(i+1,cont_carga,debug[i],float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     cont_carga +=1
-                if cont_carga == 55 and i != nmoleculas:
+                if cont_carga == 55 and i != (nmoleculas*55):
                     cont_carga = 34
 
             cont_carga = 55
 
-            for i in range((nmoleculas*55)+1,(nmoleculas*58)+1):
+            for i in range((nmoleculas*55),(nmoleculas*58)):
                 if cont_carga != 58 and i != nmoleculas:    
+                    #print(i+1,cont_carga,debug[i],float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     cont_carga +=1
-                if cont_carga == 58 and i != nmoleculas:
+                if cont_carga == 58 and i != (nmoleculas*58):
                     cont_carga = 55
 
             cont_carga = 58
 
-            for i in range((nmoleculas*57)+1,(nmoleculas*60)+1):
+            for i in range((nmoleculas*58),(nmoleculas*61)):
                 if cont_carga != 61 and i != nmoleculas:    
+                    #print(i+1,debug[i],float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     cont_carga +=1
-                if cont_carga == 61 and i != nmoleculas:
+                if cont_carga == 61 and i != (nmoleculas*61):
                     cont_carga = 58
 
             CelaTrue = Molecule()
@@ -210,6 +217,8 @@ class step:
                     CelaTrue.addChargePoints(float(cp[0]),float(cp[1]),float(cp[2]),float(cp[3]))
 
             Cela = CelaTrue
+
+            print(Cela)
 
             return Cela
 
@@ -345,7 +354,7 @@ class step:
 if __name__ == '__main__':
     y = Molecule()
     
-    cargas = ['     1  C    0.058959\n', '     2  H    0.164720\n', '     3  C   -0.212604\n', '     4  H    0.173666\n', '     5  C    0.112217\n', '     6  H    0.122024\n', '     7  C   -0.326464\n', '     8  H    0.191955\n', '     9  C    0.415547\n', '    10  C   -0.397518\n', '    11  H    0.190690\n', '    12  C   -0.030304\n', '    13  H    0.136557\n', '    14  C    0.157883\n', '    15  C   -0.405756\n', '    16  H    0.183219\n', '    17  C    0.323992\n', '    18  C    0.291090\n', '    19  C   -0.241793\n', '    20  H    0.181511\n', '    21  C   -0.236885\n', '    22  H    0.180323\n', '    23  C   -0.081754\n', '    24  H    0.124701\n', '    25  H    0.132542\n', '    26  H    0.068868\n', '    27  C    0.188826\n', '    28  H    0.012759\n', '    29  H    0.060542\n', '    30  H    0.010356\n', '    31  N   -0.067649\n', '    32  O   -0.656348\n', '    33  O   -0.325397\n', '    34  H    0.502737\n', '    35  C   -0.170774\n', '    36  C   -0.165602\n', '    37  H    0.111081\n', '    38  C    0.143189\n', '    39  C   -0.278699\n', '    40  H    0.154666\n', '    41  C   -0.134119\n', '    42  H    0.107945\n', '    43  C   -0.094901\n', '    44  H    0.104039\n', '    45  C   -0.277141\n', '    46  H    0.151727\n', '    47  C    0.206510\n', '    48  C   -0.345998\n', '    49  H    0.165071\n', '    50  C    0.045610\n', '    51  H    0.092306\n', '    52  O   -0.778291\n', '    53  O   -0.749955\n', '    54  O   -0.750949\n', '    55  S    1.471975\n', '    56  O   -0.948543\n', '    57  H    0.478658\n', '    58  H    0.463607\n', '    59  O   -1.007709\n', '    60  H    0.519602\n', '    61  H    0.483484\n']
+    cargas = ['     1  C   -0.005136\n', '     2  H    0.179237\n', '     3  C   -0.190882\n', '     4  H    0.157817\n', '     5  C    0.227778\n', '     6  H    0.079986\n', '     7  C   -0.491658\n', '     8  H    0.229003\n', '     9  C    0.646441\n', '    10  C   -0.727177\n', '    11  H    0.378083\n', '    12  C    0.027304\n', '    13  H    0.125062\n', '    14  C    0.361140\n', '    15  C   -0.928972\n', '    16  H    0.355086\n', '    17  C    0.746034\n', '    18  C   -0.001482\n', '    19  C   -0.092244\n', '    20  H    0.173952\n', '    21  C   -0.251801\n', '    22  H    0.108838\n', '    23  C    0.432091\n', '    24  H   -0.018406\n', '    25  H   -0.022715\n', '    26  H   -0.100124\n', '    27  C    0.770236\n', '    28  H   -0.137893\n', '    29  H   -0.107926\n', '    30  H   -0.162859\n', '    31  N   -0.148423\n', '    32  O   -0.730693\n', '    33  O   -0.356387\n', '    34  H    0.489191\n', '    35  C   -0.130969\n', '    36  C   -0.379474\n', '    37  H    0.186453\n', '    38  C    0.374283\n', '    39  C   -0.642769\n', '    40  H    0.244760\n', '    41  C    0.307283\n', '    42  H    0.021158\n', '    43  C   -0.634894\n', '    44  H    0.279579\n', '    45  C   -0.013113\n', '    46  H    0.130762\n', '    47  C    0.088103\n', '    48  C   -0.342011\n', '    49  H    0.200829\n', '    50  C   -0.134855\n', '    51  H    0.149325\n', '    52  O   -0.930904\n', '    53  O   -0.870765\n', '    54  O   -0.889041\n', '    55  S    2.000094\n', '    56  O   -0.948928\n', '    57  H    0.462566\n', '    58  H    0.472398\n', '    59  O   -1.000329\n', '    60  H    0.516990\n', '    61  H    0.470970\n']
     
     y.addAtom('C',-5.900792,4.088448,19.211769)
     y.addAtom('H',-5.644930, 4.481152,20.015376)
