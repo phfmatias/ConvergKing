@@ -1,3 +1,15 @@
+##   PYTHON FILE HEADER #
+##
+##   File:      [ConvergKing.py]
+##
+##   Author(s): ['Pedro H.F Matias']
+##   Site(s):   ['https://github.com/phfmatias',]
+##   Email(s):  ['phfmatias@discente.ufg.br']
+##   Credits:   ['Copyright © 2022 LEEDMOL. All rights reserved.']
+##   Date:      ['22.10.2022']
+
+
+
 from MoleKing_util import Molecule
 from time import time
 from os import chdir,getcwd

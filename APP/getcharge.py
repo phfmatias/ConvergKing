@@ -1,3 +1,13 @@
+##   PYTHON FILE HEADER #
+##
+##   File:      [getcharge.py]
+##
+##   Author(s): ['Pedro H.F Matias','Mateus R. Barbosa]
+##   Site(s):   ['https://github.com/phfmatias','https://github.com/Mateus-RB']
+##   Email(s):  ['phfmatias@discente.ufg.br']
+##   Credits:   ['Copyright © 2022 LEEDMOL. All rights reserved.']
+##   Date:      ['22.10.2022']
+
 from os import listdir
 from MoleKing_util import Molecule
 from sys import exit

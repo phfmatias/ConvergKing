@@ -1,3 +1,13 @@
+##   PYTHON FILE HEADER #
+##
+##   File:      [restart.py]
+##
+##   Author(s): ['Pedro H.F Matias','Mateus R. Barbosa]
+##   Site(s):   ['https://github.com/phfmatias','https://github.com/Mateus-RB']
+##   Email(s):  ['phfmatias@discente.ufg.br']
+##   Credits:   ['Copyright © 2022 LEEDMOL. All rights reserved.']
+##   Date:      ['22.10.2022']
+
 from MoleKing_util import Molecule
 from os import mkdir, listdir,getcwd,chdir
 from numpy import arange
