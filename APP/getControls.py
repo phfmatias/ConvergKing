@@ -2,7 +2,7 @@
 ##
 ##   File:      [getControls.py]
 ##
-##   Author(s): ['Pedro H.F Matias','Mateus R. Barbosa]
+##   Author(s): ['Pedro H.F Matias','Mateus R. Barbosa']
 ##   Site(s):   ['https://github.com/phfmatias','https://github.com/Mateus-RB']
 ##   Email(s):  ['phfmatias@discente.ufg.br']
 ##   Credits:   ['Copyright © 2022 LEEDMOL. All rights reserved.']
