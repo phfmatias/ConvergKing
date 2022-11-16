@@ -20,7 +20,6 @@ ConvergKing make use of **three** input files:
 ---
 # Output Files
 
-
 ConvergKing output file are:
     <ul>
     <li>a dummy .gjf (Gaussian 16 input file) containing the converged charge field;</li>
@@ -30,13 +29,12 @@ ConvergKing output file are:
 
 ---
 # Required Libraries
-
-    <ul>
-    <li>MoleKing_util -> https://github.com/lopesth/MoleKing_util, The authors would like to thank Lopes TH and Mateus RB for disponibilizing the MoleKing_util chemical package.</li>
-    <li>Matplotlib;</li>
-    <li>lmfit;</li>
-    <li>numpy;</li>
-    </ul>
+    
+    [MoleKing_util](https://github.com/lopesth/MoleKing_util), The authors would like to thank Lopes TH and Mateus RB for disponibilizing the MoleKing_util chemical package.
+    Matplotlib;
+    lmfit;
+    numpy;
+    
 ---
         
 # How to run:
