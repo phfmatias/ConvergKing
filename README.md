@@ -36,11 +36,13 @@ ConvergKing output file are:
     <li>Matplotlib;</li>
     <li>lmfit;</li>
     <li>numpy;</li>
-    <ul>
+    </ul>
 ---
         
 # How to run:
-    ```python3 PATH/ConvergKing/ConvergKing.py```
+    ```python
+    python3 PATH/ConvergKing/ConvergKing.py
+    ```
 
 ---
         
