@@ -5,7 +5,7 @@
 # ConvergKing
 
 
-**ConvergKing** is a python script that automate the convergence of electrostatic environment convergence for crystals as described at supermolecular method, [J. M. F. Custodio , C. N. Perez , C. Valverde , F. A. P. Osório and H. B. Napolitano , Chem. Phys. Lett., 2020, 738 , 136852] (https://pubs.rsc.org/en/content/articlelanding/2017/nj/c7nj00618g).
+**ConvergKing** is a python script that automate the convergence of electrostatic environment convergence for crystals as described at [supermolecular method](https://pubs.rsc.org/en/content/articlelanding/2017/nj/c7nj00618g).
 
 ---
 # Input Files
