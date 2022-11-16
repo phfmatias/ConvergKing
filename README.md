@@ -31,16 +31,26 @@ ConvergKing output file are:
 ---
 # Required Libraries
 
-Required libraries:
-    MoleKing_util -> https://github.com/lopesth/MoleKing_util, The authors would like to thank Lopes TH and Mateus RB for disponibilizing the MoleKing_util chemical package. 
-    Matplotlib;
-    lmfit;
-    numpy;
+*Required libraries:*
+    <ul>
+    <li>MoleKing_util -> https://github.com/lopesth/MoleKing_util, The authors would like to thank Lopes TH and Mateus RB for disponibilizing the MoleKing_util chemical package.</li>
+    <li>Matplotlib;</li>
+    <li>lmfit;</li>
+    <li>numpy;</li>
+    <ul>
+---
+        
+# How to run:
+    ```python3 PATH/ConvergKing/ConvergKing.py```
 
-How to run:
-    Just type python3 PATH/ConvergKing/ConvergKing.py
+---
+        
+# Authors
 
-Authors: The LEEDMol Research Group of the Universidade Federal de Goiás (UFG)
+The LEEDMol Research Group of the Universidade Federal de Goiás (UFG)
 
-More info:
-    phfmatias.quimica@gmail.com
+---
+        
+# Contact
+
+email: phfmatias@discente.ufg.br
