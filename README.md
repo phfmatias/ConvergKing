@@ -1,10 +1,13 @@
-![ConvergKing](https://user-images.githubusercontent.com/71854729/165822220-36ace15b-dc87-4266-aeb5-4ee5680e9fdc.png)
+![ConvergKing](https://user-images.githubusercontent.com/71854729/202253850-ea929cad-30f3-40af-af74-80be09c9eb06.png)
+
 
 ---
 # ConvergKing
 
 
-**ConvergKing** is a python script that automate the convergence of electrostatic environment convergence for crystals as described at supermolecular method, "Valverde, C.; Vaz, W. F.; Custodio, J. M. F.; Duarte, V. S.; Carvalho, P. S., Jr.; Figueredo, A. S.; de Aquino, G. L. B.; Baseia, B.; Napolitano, H. B. The Solid State Structure and Environmental Polarization Effect of a Novel Asymmetric Azine. New J. Chem. 2017, 41, 11361−11371".
+**ConvergKing** is a python script that automate the convergence of electrostatic environment convergence for crystals as described at [supermolecular method](https://pubs.rsc.org/en/content/articlelanding/2017/nj/c7nj00618g)
+
+"Valverde, C.; Vaz, W. F.; Custodio, J. M. F.; Duarte, V. S.; Carvalho, P. S., Jr.; Figueredo, A. S.; de Aquino, G. L. B.; Baseia, B.; Napolitano, H. B. The Solid State Structure and Environmental Polarization Effect of a Novel Asymmetric Azine. New J. Chem. 2017, 41, 11361−11371".
 
 ---
 # Input Files
