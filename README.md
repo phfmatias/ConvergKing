@@ -5,9 +5,7 @@
 # ConvergKing
 
 
-**ConvergKing** is a python script that automate the convergence of electrostatic environment convergence for crystals as described at [supermolecular method](https://pubs.rsc.org/en/content/articlelanding/2017/nj/c7nj00618g)
-
-"Valverde, C.; Vaz, W. F.; Custodio, J. M. F.; Duarte, V. S.; Carvalho, P. S., Jr.; Figueredo, A. S.; de Aquino, G. L. B.; Baseia, B.; Napolitano, H. B. The Solid State Structure and Environmental Polarization Effect of a Novel Asymmetric Azine. New J. Chem. 2017, 41, 11361−11371".
+**ConvergKing** is a python script that automate the convergence of electrostatic environment convergence for crystals as described at supermolecular method, [J. M. F. Custodio , C. N. Perez , C. Valverde , F. A. P. Osório and H. B. Napolitano , Chem. Phys. Lett., 2020, 738 , 136852] (https://pubs.rsc.org/en/content/articlelanding/2017/nj/c7nj00618g).
 
 ---
 # Input Files
