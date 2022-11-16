@@ -1,12 +1,14 @@
 ![ConvergKing](https://user-images.githubusercontent.com/71854729/165822220-36ace15b-dc87-4266-aeb5-4ee5680e9fdc.png)
 
-# ConvergKing
 ---
+# ConvergKing
+
 
 **ConvergKing** is a python script that automate the convergence of electrostatic environment convergence for crystals as described at supermolecular method, "Valverde, C.; Vaz, W. F.; Custodio, J. M. F.; Duarte, V. S.; Carvalho, P. S., Jr.; Figueredo, A. S.; de Aquino, G. L. B.; Baseia, B.; Napolitano, H. B. The Solid State Structure and Environmental Polarization Effect of a Novel Asymmetric Azine. New J. Chem. 2017, 41, 11361−11371".
 
-# Input Files
 ---
+# Input Files
+
 
 ConvergKing make use of **three** input files: 
     <ul>
@@ -15,8 +17,9 @@ ConvergKing make use of **three** input files:
     <li>a supercell.xyz file that contain the atomic positioning of the crystal lattice;</li>
     </ul>
 
-# Output Files
 ---
+# Output Files
+
 
 ConvergKing output file are:
     <ul>
@@ -25,8 +28,8 @@ ConvergKing output file are:
     <li>the dipole convergence graph.</li>
     </ul>
 
-# Required Libraries
 ---
+# Required Libraries
 
 Required libraries:
     MoleKing_util -> https://github.com/lopesth/MoleKing_util, The authors would like to thank Lopes TH and Mateus RB for disponibilizing the MoleKing_util chemical package. 
