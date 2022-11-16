@@ -39,9 +39,9 @@ ConvergKing output file are:
 ---
         
 # How to run:
-    ```python
-    python3 PATH/ConvergKing/ConvergKing.py
-    ```
+```bash
+python3 PATH/ConvergKing/ConvergKing.py
+ ```
 
 ---
         
