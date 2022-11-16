@@ -29,11 +29,12 @@ ConvergKing output file are:
 
 ---
 # Required Libraries
-    
-    [MoleKing_util](https://github.com/lopesth/MoleKing_util), The authors would like to thank Lopes TH and Mateus RB for disponibilizing the MoleKing_util chemical package.
+    <ul>
+    <li>MoleKing_util -> https://github.com/lopesth/MoleKing_util, The authors would like to thank Lopes TH and Mateus RB for disponibilizing the MoleKing_util chemical package.</li>
     Matplotlib;
     lmfit;
     numpy;
+    </ul>
     
 ---
         
