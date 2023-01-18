@@ -1,5 +1,4 @@
-![ConvergKing](https://user-images.githubusercontent.com/71854729/202253850-ea929cad-30f3-40af-af74-80be09c9eb06.png)
-
+![ConvergKing_Grad](https://user-images.githubusercontent.com/71854729/213286756-76a8e58b-c51c-45fb-a530-34a607cd753e.png)
 
 ---
 # ConvergKing
