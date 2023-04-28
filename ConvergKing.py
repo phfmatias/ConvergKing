@@ -10,7 +10,7 @@
 
 
 
-from MoleKing_util import Molecule
+from MoleKing import Molecule
 from time import time
 from os import chdir,getcwd
 from sys import argv

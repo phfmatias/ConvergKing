@@ -8,7 +8,7 @@
 ##   Credits:   ['Copyright © 2022 LEEDMOL. All rights reserved.']
 ##   Date:      ['22.10.2022']
 
-from MoleKing_util import Molecule
+from MoleKing import Molecule
 from os import mkdir, listdir
 from numpy import arange
 

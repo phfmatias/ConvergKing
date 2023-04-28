@@ -9,7 +9,7 @@
 ##   Date:      ['22.10.2022']
 
 from os import listdir
-from MoleKing_util import Molecule
+from MoleKing import Molecule
 from sys import exit
 
 class get_charge:
