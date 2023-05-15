@@ -51,7 +51,7 @@ class getdipole:
         pyplot.plot(arange(0,10,0.01), YY, '--', color='#000000')
         pyplot.plot(dadosx, dadosy, 'o', markersize=9, color='#0000cc')
         pyplot.ylabel('Dipole (D)', fontsize=15)
-        pyplot.xlabel('Interation Step', fontsize=15)
+        pyplot.xlabel('Iteration Step', fontsize=15)
         pyplot.xlim(-0.2, max(dadosx)+0.2)
         pyplot.xticks(range(len(dadosy)), range(len(dadosy)))
         pyplot.savefig('{0}_{1}.png'.format(self.name,self.cMethod), dpi=500, transparent=True) ##Aqui troca o nome##
