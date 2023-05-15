@@ -12,6 +12,7 @@ from os import mkdir, listdir
 import matplotlib.pyplot as pyplot
 from lmfit import Model
 from numpy import arange,exp,array
+from sys import argv
 
 def E(x, a, b, c):
     return a+b*exp(-c*x)
@@ -58,4 +59,6 @@ class getdipole:
 
 if __name__ == '__main__':
 
-    getdipole('teste', 1, 'mulliken')
+    #getdipole('teste', 1, 'mulliken')
+    print('Usage: python3 getDipole.py [name] [steps] [method]')
+    getdipole(argv[1], int(argv[2]), argv[3])
