@@ -14,6 +14,14 @@ from numpy import arange
 
 class restart:
     def __init__(self,nsteps):
+        """
+        This class is responsible for checking the steps of the convergence process.
+
+        Parameters
+        ----------
+        nsteps : int
+            The number of steps in the convergence process.
+        """
         self.list_steps = [x for x in listdir() if 'step' in x] 
         if 'stepfinal' in self.list_steps:
             index = self.list_steps.index('stepfinal')
@@ -29,6 +37,10 @@ class restart:
         self.checkSteps()
 
     def checkSteps(self):
+        """
+        This method checks the steps of the convergence process.        
+        """
+        
         check = False
         for steps in self.list_steps:
             chdir(steps)

@@ -9,18 +9,49 @@
 ##   Date:      ['22.10.2022']
 
 from sys import exit
-
 class getinfo:
     def __init__(self):
+        """
+        Initializes the class with default parameters.
+
+        Parameters
+        ----------
+        nx -> int
+            Size of the cell in the x-direction.
+        ny -> int
+            Size of the cell in the y-direction.
+        nz -> int
+            Size of the cell in the z-direction.
+        name -> str 
+            Name of your system.
+        method -> str
+            Computational method to be used.
+        base -> str
+            Basis set to be used.
+        mem -> str
+            Memory allocation for the G16.
+        cpu -> int
+            Number of CPU cores to be used in G16.
+        cMethod -> str
+            Charge method to be used.
+        nsteps -> int
+            Number of steps for the convergence.
+        restart -> bool
+            Flag to indicate if the job is a restart.
+        vsns -> bool  
+            Flag to indicate if the compound is VSNS.
+        radii -> list
+            List to store radii values.
+        """
+
         self.nx = 7
         self.ny = 7
         self.nz = 7
         self.name = 'test'
-        self.metodo = 'b3lyp'
+        self.method = 'b3lyp'
         self.base = '6-31g'
         self.mem = '2GB'
         self.cpu = 1
-        self.sheril = True
         self.cMethod = 'ChelpG'
         self.nsteps = 10
         self.restart = False
@@ -29,10 +60,15 @@ class getinfo:
         self.get_info()
 
     def get_info(self):
+
+        """
+        This method reads the file 'info.in' and stores the parameters in the class attributes.   
+        """
+
         try:
             arq = open('info.in','r')
         except:
-            print('Arquivo de Parametrôs não encontrado...')
+            print('Parameters file not found. Exiting...')
             exit(0)
             
         rlines = arq.readlines()
@@ -46,14 +82,11 @@ class getinfo:
             elif 'nz' in lines:
                 self.nz = int(lines.split()[2])
 
-            #elif 'ncela' in lines:
-            #    self.ncela = int(lines.split()[2])
-
             elif 'name' in lines:
                 self.name = lines.split()[2]
 
-            elif 'metodo' in lines:
-                self.metodo = lines.split()[2]
+            elif 'method' in lines:
+                self.method = lines.split()[2]
 
             elif 'base' in lines:
                 self.base = lines.split()[2]
@@ -78,17 +111,12 @@ class getinfo:
 
             elif 'cpu' in lines:
                 self.cpu = int(lines.split()[2])
-        
-            elif 'sheril' in lines:
-                self.sheril = lines.split()[2] == 'True'
-
+    
             elif 'cMethod' in lines:
                 self.cMethod = lines.split()[2]
 
             elif 'radii' in lines:
                 self.radii = lines.split()[2:]
-
-            #print(self.nx,self.ny,self.nz,self.ncela,self.name,self.metodo,self.base,self.mem,self.cpu,self.sheril,self.cMethod,self.radii) #Debug Reasons
 
 if __name__ == '__main__':
     getinfo()

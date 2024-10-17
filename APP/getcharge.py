@@ -15,6 +15,16 @@ from sys import exit
 class get_charge:
 
     def __init__(self,cMethod,monomer):
+        """
+        This class is responsible for extracting the charges from the log file.
+
+        Parameters
+        ----------
+        cMethod : str
+            The charge method used in the calculation.
+        monomer : str
+            The monomer molecule.
+        """
         self.cMethod = cMethod
         self.log = [x for x in listdir() if '.log' in x][0]
         #if self.cMethod.lower() == 'aim':
@@ -24,6 +34,15 @@ class get_charge:
         self.cargas = self.getCharge()
 
     def getCharge(self):
+        """
+        This method extracts the charges from the log file.
+        
+        Returns
+        -------
+        list
+            The charges of the atoms.
+        
+        """
         if self.cMethod.lower() == 'chelp' or self.cMethod.lower() == 'chelpg' or self.cMethod.lower() == 'mk':
             arq = open(self.log,'r')
             rlines = arq.readlines()
@@ -81,19 +100,21 @@ class get_charge:
                 if 'III. PROPERTIES OF ATTRACTORS' in rlines[i]:
                     start = i+6
                     end = i+5+len(self.monomer)+1
-        
-        print(rlines[start:end])
+    
         
         return rlines[start:end]
 
     def calculosOk(self):
+        """
+        This method checks if the calculation was successful.
+        """
 
         arq = open(self.log,'r')
         rlines = arq.readlines()
 
         for i in range(len(rlines)):
             if 'Error termination' in rlines[i]:
-                print('Cálculo do {} deu errado!'.format(self.log))
+                print('Calculations of {} failed!'.format(self.log))
                 exit(0)
 
 if __name__ == '__main__':

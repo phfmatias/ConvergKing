@@ -14,16 +14,21 @@ from numpy import arange
 
 class step:
 
-    def __init__(self, step,metodo, base, molecula, name, cargas,nx,ny,nz,cpu,mem,sheril,radii,cMethod,vsns):
-        self.metodo = metodo
+    def __init__(self, step,method, base, molecula, name, cargas,nx,ny,nz,cpu,mem,radii,cMethod,vsns):
+        """
+        This class is responsible for creating the input file for remaining steps of the convergence process.
+
+        Parameters
+        ----------
+        The parameters are described at getControls.py
+        """
+        self.method = method
         self.base = base
         self.name = name
         self.molecula = molecula
         self.radii = radii
         self.step = step
         self.cargas = cargas
-        #self.ncela = ncela
-        self.sheril = sheril
         self.vsns = vsns
         self.nx = nx
         self.ny = ny
@@ -40,80 +45,21 @@ class step:
         self.writeInput()
 
     def constructSM(self):
-        if self.sheril == True:
-            cel = self.cargas   #pegar as cargas do step anterior
-            celaT = open('supercell.xyz','r') #pegar as posições gerados no  cristalatte            
-            M = self.molecula
-            Monomero = Molecule()
-            Cela = Molecule()           
+        """
+        This method constructs the supercell for the calculation.
 
-            cargasSherril = []
+        Returns
+        -------
+        MoleKing::Molecule
+            The supercell for the calculation. The molecule has the central molecule and the enviroment as MoleKing::ChargePoints.
 
-            if self.cMethod.lower() == 'chelpg' or self.cMethod.lower() == 'chelp' or self.cMethod.lower() == 'mk' or self.cMethod.lower() == 'mulliken':
-                for i in range(len(M)):
-                    Monomero.addAtom(M[i].getAtomicSymbol(),M[i].getX(), M[i].getY(),M[i].getZ(),float(cel[i].split()[2]))
-            
-            elif self.cMethod.lower() == 'cm5':
-                for i in range(len(M)):
-                    Monomero.addAtom(M[i].getAtomicSymbol(),M[i].getX(), M[i].getY(),M[i].getZ(),float(cel[i].split()[7]))
-            
-            elif self.cMethod.lower() == 'hirshfeld':
-                for i in range(len(M)):
-                    Monomero.addAtom(M[i].getAtomicSymbol(),M[i].getX(), M[i].getY(),M[i].getZ(),float(cel[i].split()[2]))
+        Description
+        -------
+        This method constructs the supercell for the calculation. It is responsible for adding the central molecule and the enviroment as MoleKing::ChargePoints. The method is called by the __init__ method and returns the supercell as a MoleKing::Molecule.
 
-            elif self.cMethod.lower() == 'nbo' or self.cMethod.lower() == 'npa':
-                for i in range(len(M)):
-                    Monomero.addAtom(M[i].getAtomicSymbol(),M[i].getX(), M[i].getY(),M[i].getZ(),float(cel[i].split()[2]))
+        """
 
-            elif self.cMethod.lower() == 'aim':
-                for i in range(len(M)):
-                    Monomero.addAtom(M[i].getAtomicSymbol(),M[i].getX(), M[i].getY(),M[i].getZ(),float(cel[i].split()[3]))
-
-            for atom in Monomero:
-                for x in arange(self.nx):
-                    for y in arange(self.ny):
-                        for z in arange(self.nz):
-                            cargasSherril.append(atom.getCharge())
-
-            rlines = celaT.readlines() 
-            ncela = int(int(rlines[0])/(self.nx*self.nz*self.ny*len(Monomero)))
-
-            for atom in Monomero:
-                for x in arange(self.nx):
-                    for y in arange(self.ny):
-                        for z in arange(self.nz):
-                            for i in arange(ncela-1):
-                                cargasSherril.append(atom.getCharge())                    
-           
-            xyz = []
-            for atom in Monomero:
-                xyz.append('{},{:.8f},{:.8f},{:.8f}\n'.format(atom.getAtomicSymbol(), atom.getX(), atom.getY(), atom.getZ()))                
-            
-            #cargas_conv = (open('cargas_convergidas.data','w')) #ESCREVE A CARGA CONVERGIDA
-            
-            for i in arange(len(cargasSherril)):
-                line = '{},{:.8f},{:.8f},{:.8f}\n'.format(rlines[i+2].split()[0],float(rlines[i+2].split()[1]),float(rlines[i+2].split()[2]),float(rlines[i+2].split()[3]))                
-                #cargas_conv.write('{},{},{},{},{}\n'.format(line.split(',')[0],line.split(',')[1],line.split(',')[2],line.split(',')   [3],cargasSherril[i]))
-
-                if line in xyz:
-                    pass
-
-                else:
-                    #conferir.addAtom(str(line.split(',')[0]),float(line.split(',')[1]), float(line.split(',')[2]), float(line.split    (',')[3]), float#cargasSherril[i]))
-
-                    #print(line.split()[1],line.split()[2],line.split()[3],cargasSherril[i])
-
-                    Cela.addChargePoints(float(line.split(',')[1]), float(line.split(',')[2]), float(line.split(',')[3]),   cargasSherril[i])
-
-            #for atom in conferir:
-                #print(atom)
-
-            for atom in Monomero:
-                Cela.addAtom(atom)
-
-            return Cela
-
-        if self.sheril == False and self.vsns == True:
+        if self.vsns:
             M = self.molecula
             Monomero = Molecule()
             cont_pos = 0
@@ -161,9 +107,6 @@ class step:
             for lines in pos_envolvida[2:]:
                 debug_line = '{}'.format(lines.split()[0])
                 lines = '{},{},{}'.format(lines.split()[1],lines.split()[2],lines.split()[3])
-                #if lines in xyz:
-                #    pass
-                #else:
                 debug.append(debug_line)
                 x.append(lines.split(',')[0])
                 y.append(lines.split(',')[1])
@@ -177,7 +120,6 @@ class step:
 
             for i in range(0,(nmoleculas*34)):
                 if cont_carga != 34 and i != (nmoleculas*34):
-                    #print(i+1,cont_carga,debug[i],float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     cont_carga +=1
                 if cont_carga == 34 and i != (nmoleculas*34):
@@ -187,7 +129,6 @@ class step:
 
             for i in range((nmoleculas*34),(nmoleculas*55)):
                 if cont_carga != 55 and i != nmoleculas:    
-                    #print(i+1,cont_carga,debug[i],float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     cont_carga +=1
                 if cont_carga == 55 and i != (nmoleculas*55):
@@ -197,7 +138,6 @@ class step:
 
             for i in range((nmoleculas*55),(nmoleculas*58)):
                 if cont_carga != 58 and i != nmoleculas:    
-                    #print(i+1,cont_carga,debug[i],float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     cont_carga +=1
                 if cont_carga == 58 and i != (nmoleculas*58):
@@ -207,7 +147,6 @@ class step:
 
             for i in range((nmoleculas*58),(nmoleculas*61)):
                 if cont_carga != 61 and i != nmoleculas:    
-                    #print(i+1,debug[i],float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     Cela.addChargePoints(float(x[i]),float(y[i]),float(z[i]),float(cargas[cont_carga]))
                     cont_carga +=1
                 if cont_carga == 61 and i != (nmoleculas*61):
@@ -228,11 +167,9 @@ class step:
 
             Cela = CelaTrue
 
-            print(Cela)
-
             return Cela
 
-        if self.sheril == False and self.vsns == False:
+        else:
             M = self.molecula
             Monomero = Molecule()
             cont_pos = 0
@@ -299,40 +236,80 @@ class step:
 
             return Cela
 
-    def inputConstructor(self):        
+    def inputConstructor(self):
+        """
+        This method constructs the input file for the remaining steps of the convergence process.
+
+        Returns
+        -------
+        str
+            The input file for the remaining steps of the convergence process.        
+
+        Description
+        -------
+        This method constructs the input file for the first step of the convergence process. It is responsible for writing the input file with the correct parameters for the calculation. The method is called by the __init__ method and returns the input file as a string.
+        """     
+
         ipt = '%chk={}_step{}.chk'.format(self.name,self.step)
         write = '%nprocshared={}\n'.format(self.cpu)
-        write += '%mem={}\n'.format(self.mem)
+        write += '%mem={}\n'.format(self.mem)     
 
-        #if self.vsns == True:
-        #    write += '#p {0}/{1} POP={2} SCF=QC density=current NoSymm Charge\n\n'.format(self.metodo,self.base,self.cMethod)        
+        if self.cMethod == 'aim':
+            if self.vsns:
+                write += '#p {0}/{1} AIM=CHARGES SCF=QC GFINPUT IOP(6/7=3) density=current NoSymm charge\n\n'.format(self.method,self.base)
+            else:
+                write += '#p {0}/{1} AIM=CHARGES SCF=TIGHT GFINPUT IOP(6/7=3) density=current NoSymm charge\n\n'.format(self.method,self.base)
+
+        elif self.base == 'None':
+            if len(self.radii) == 0:
+                if self.cMethod.lower() == 'mulliken':
+                    write += '#p {0} POP=Minimal density=current NoSymm charge\n\n'.format(self.method)
+                else:
+                    write += '#p {0} POP={1} density=current NoSymm charge\n\n'.format(self.method,self.cMethod)
+            elif len(self.radii) > 0:
+                if self.cMethod.lower() == 'mulliken':
+                    write += '#p {0} POP=(Minimal,ReadRadii) density=current NoSymm charge\n\n'.format(self.method)
+                else:
+                    write += '#p {0} POP=({},ReadRadii) density=current NoSymm charge\n\n'.format(self.method,self.cMethod)    
+
+        elif self.base != 'None':
+            if len(self.radii) > 0:
+                if self.cMethod.lower() == 'mulliken':
+                    write += '#p {0}/{1} POP=(Minimal,ReadRadii) density=current NoSymm charge\n\n'.format(self.method,self.base)
+                else:
+                    write += '#p {0}/{1} POP=({2},ReadRadii) density=current NoSymm charge\n\n'.format(self.method,self.base,self.cMethod)
+            else:
+                if self.cMethod.lower() == 'mulliken':
+                    write += '#p {0}/{1} POP=Minimal density=current NoSymm charge\n\n'.format(self.method,self.base)
+                else:
+                    write += '#p {0}/{1} POP={2} density=current NoSymm charge\n\n'.format(self.method,self.base,self.cMethod)
         
-        if self.vsns == True and self.cMethod == 'aim':
-            write += '#p {0}/{1} AIM=CHARGES SCF=QC GFINPUT IOP(6/7=3) density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
+        # if self.vsns == True and self.cMethod == 'aim':
+        #     write += '#p {0}/{1} AIM=CHARGES SCF=QC GFINPUT IOP(6/7=3) density=current NoSymm Charge\n\n'.format(self.method,self.base)
         
-        if self.base == 'None' and len(self.radii) == 0:
-            write += '#p {0} POP={1} density=current NoSymm Charge\n\n'.format(self.metodo,self.cMethod)
+        # if self.base == 'None' and len(self.radii) == 0:
+        #     write += '#p {0} POP={1} density=current NoSymm Charge\n\n'.format(self.method,self.cMethod)
         
-        elif self.base == 'None' and len(self.radii) >0:
-            write += '#p {0} POP=({1},ReadRadii) density=current NoSymm Charge\n\n'.format(self.metodo,self.cMethod)
+        # elif self.base == 'None' and len(self.radii) >0:
+        #     write += '#p {0} POP=({1},ReadRadii) density=current NoSymm Charge\n\n'.format(self.method,self.cMethod)
         
-        elif self.base != 'None' and len(self.radii) >0:
-            write += '#p {0}/{1} POP=({2},ReadRadii) density=current NoSymm Charge\n\n'.format(self.metodo,self.base,self.cMethod)
+        # elif self.base != 'None' and len(self.radii) >0:
+        #     write += '#p {0}/{1} POP=({2},ReadRadii) density=current NoSymm Charge\n\n'.format(self.method,self.base,self.cMethod)
         
-        elif self.cMethod.lower() == 'aim' and self.vsns == False:
-            write += '#p {0}/{1} AIM=CHARGES SCF=TIGHT GFINPUT IOP(6/7=3) density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
+        # elif self.cMethod.lower() == 'aim' and self.vsns == False:
+        #     write += '#p {0}/{1} AIM=CHARGES SCF=TIGHT GFINPUT IOP(6/7=3) density=current NoSymm Charge\n\n'.format(self.method,self.base)
         
-        elif self.cMethod.lower() == 'mulliken' and self.base == 'None' and len(self.radii) >0:
-            write += '#p {0} POP=(Minimal,ReadRadii) density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
+        # elif self.cMethod.lower() == 'mulliken' and self.base == 'None' and len(self.radii) >0:
+        #     write += '#p {0} POP=(Minimal,ReadRadii) density=current NoSymm Charge\n\n'.format(self.method,self.base)
         
-        elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) >0:
-            write += '#p {0}/{1} POP=(Minimal,ReadRadii) density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
+        # elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) >0:
+        #     write += '#p {0}/{1} POP=(Minimal,ReadRadii) density=current NoSymm Charge\n\n'.format(self.method,self.base)
         
-        elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) ==0:
-            write += '#p {0}/{1} POP=Minimal density=current NoSymm Charge\n\n'.format(self.metodo,self.base)
+        # elif self.cMethod.lower() == 'mulliken' and self.base != 'None' and len(self.radii) ==0:
+        #     write += '#p {0}/{1} POP=Minimal density=current NoSymm Charge\n\n'.format(self.method,self.base)
         
-        else:
-            write += '#p {0}/{1} POP={2} density=current NoSymm Charge\n\n'.format(self.metodo,self.base,self.cMethod)
+        # else:
+        #     write += '#p {0}/{1} POP={2} density=current NoSymm Charge\n\n'.format(self.method,self.base,self.cMethod)
         
         write += 'STEP {} \n\n'.format(self.step)
         write += '0 1\n'
@@ -351,13 +328,16 @@ class step:
                 write += '{} {}'.format(self.radii[i], self.radii[i+1])        
             write+='\n'
 
-        #if self.cMethod == 'AIM':
-        #    write+= '{}_wfn.wfn'.format(self.name)
-        #    write+='\n'
-
         return write
 
     def writeInput(self):
+        """
+        This method writes the input file for the first step of the convergence process.
+
+        Description
+        -------
+        It writes the input file for the first step of the convergence process. The method is called by the __init__ method and writes the input file in the 'step0' directory.
+        """
         arqv = open('step{0}/{1}_step{0}.gjf'.format(self.step,self.name),'w')
         arqv.write(self.string)  
 
